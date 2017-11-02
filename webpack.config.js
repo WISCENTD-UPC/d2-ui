@@ -51,6 +51,7 @@ module.exports = {
             textfield: './examples/text-field',
             selectfield: './examples/select-field',
             tabs: './examples/tabs',
+            menu: './examples/menu',
         },
     devtool: 'source-map',
     output: {
