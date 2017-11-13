@@ -68,19 +68,19 @@ export default class ColorScaleSelect extends Component {
     // Show popover with allowed color scales
     showColorScales = (event) => {
         this.setState({ open: true, anchorEl: event.currentTarget });
-    }
+    };
 
     // Called when a new color scale is selected in the popover
     onColorScaleSelect = (event, scale) => {
         this.setState({ scale, open: false });
         this.props.onChange(this.getColorBrewerScale(scale, this.state.classes));
-    }
+    };
 
     // Called when the number of classes is changed
     onClassesChange = (event, index, value) => {
         this.setState({ classes: value });
         this.props.onChange(this.getColorBrewerScale(this.state.scale, value));
-    }
+    };
 
     // Returns a color brewer scale for a number of classes
     getColorBrewerScale(scale, classes) {
@@ -90,7 +90,7 @@ export default class ColorScaleSelect extends Component {
     // Called when popover is closed
     onColorScalePopoverClose = () => {
         this.setState({ open: false });
-    }
+    };
 
     render() {
         const styles = {
@@ -113,20 +113,28 @@ export default class ColorScaleSelect extends Component {
                 whiteSpace: 'nowrap',
             },
         };
+
+        const label = this.props.label || this.i18n.getTranslation('number_of_items');
+
         const colorScales = scales.map((scale, index) =>
             <ColorScale key={index} scale={scale} classes={this.state.classes} style={styles.popoverScale} onClick={this.onColorScaleSelect} />,
         );
 
         return (
             <Row style={{ alignItems: 'center', ...this.props.style }}>
-                <SelectField floatingLabelText={this.i18n.getTranslation('number_of_items')} value={this.state.classes} onChange={this.onClassesChange}>
-                    <MenuItem value={3} primaryText="3" />
-                    <MenuItem value={4} primaryText="4" />
-                    <MenuItem value={5} primaryText="5" />
-                    <MenuItem value={6} primaryText="6" />
-                    <MenuItem value={7} primaryText="7" />
-                    <MenuItem value={8} primaryText="8" />
-                    <MenuItem value={9} primaryText="9" />
+                <SelectField
+                    floatingLabelText={label}
+                    value={this.state.classes}
+                    onChange={this.onClassesChange}
+                    style={this.props.classesStyle}
+                >
+                    <MenuItem value={3} primaryText='3' />
+                    <MenuItem value={4} primaryText='4' />
+                    <MenuItem value={5} primaryText='5' />
+                    <MenuItem value={6} primaryText='6' />
+                    <MenuItem value={7} primaryText='7' />
+                    <MenuItem value={8} primaryText='8' />
+                    <MenuItem value={9} primaryText='9' />
                 </SelectField>
 
                 <ColorScale scale={this.state.scale} classes={this.state.classes} style={{ ...styles.scale, margin: '0 20px 0 20px' }} onClick={this.showColorScales} />
