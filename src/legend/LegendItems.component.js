@@ -25,6 +25,10 @@ class LegendItems extends Component {
         openEditDialogFor(legend);
     };
 
+    onUpdateItem = () => {
+        this.props.updateItem(this.props.items);
+    }
+
     render() {
         const props = this.props;
 
@@ -46,7 +50,6 @@ class LegendItems extends Component {
         };
 
         const orderedItems = props.items.sort((left, right) => Number(left.startValue) > Number(right.startValue));
-
         return (
             <div style={styles.component}>
                 <FloatingActionButton style={styles.button} onClick={this.onAddLegendItem}>
@@ -60,7 +63,7 @@ class LegendItems extends Component {
                     contextMenuActions={actions}
                 />
 
-                <EditLegendItem onItemUpdate={() => props.updateItem(props.items)} />
+                <EditLegendItem onItemUpdate={this.onUpdateItem} />
             </div>
         );
     }
@@ -71,6 +74,7 @@ LegendItems.contextTypes = {
 };
 
 LegendItems.propTypes = {
+    updateItem: PropTypes.func.isRequired,
     items: PropTypes.array.isRequired,
 };
 

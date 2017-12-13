@@ -14,7 +14,6 @@ config.i18n.strings.add('edit_legend_item');
 
 function isCloseDisabled(isValid) {
     const model = legendItemStore.getState() && legendItemStore.getState().model;
-
     if (model && (model.startValue === undefined || model.endValue === undefined || model.name === undefined)) {
         return true;
     }
@@ -27,7 +26,7 @@ function isCloseDisabled(isValid) {
 }
 
 // props, context
-export function EditLegendItem({ fieldConfigs = [], open = false, onItemUpdate, isValid }, { d2 }) {
+export function EditLegendItem({ fieldConfigs, open, onItemUpdate, isValid }, { d2 }) {
     const onCancel = () => {
         setDialogStateToAction(false);
     };
@@ -60,18 +59,29 @@ export function EditLegendItem({ fieldConfigs = [], open = false, onItemUpdate, 
             actions={actions}
             autoScrollBodyContent
         >
-
             <FormBuilder
                 fields={fieldConfigs}
                 onUpdateField={onFieldChange}
                 onUpdateFormStatus={onFormStatusChange}
             />
-
         </Dialog>
     );
 }
 EditLegendItem.contextTypes = {
     d2: PropTypes.object,
+};
+
+EditLegendItem.propTypes = {
+    onItemUpdate: PropTypes.func.isRequired,
+    isValid: PropTypes.bool,
+    fieldConfigs: PropTypes.array,
+    open: PropTypes.bool,
+};
+
+EditLegendItem.defaultProps = {
+    fieldConfigs: [],
+    isValid: true,
+    open: false,
 };
 
 export default withStateFrom(legendItemStore$, EditLegendItem);

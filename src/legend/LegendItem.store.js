@@ -76,7 +76,6 @@ const formFieldsConfigs = [{
 // Called when a field is changed
 export function onFieldChange(fieldName, value) {
     const model = legendItemStore.getState().model;
-
     model[fieldName] = value;
 
     legendItemStore.setState({

@@ -68,7 +68,6 @@ class Legend extends Component {
 
             return legend;
         });
-
         this.props.onItemsChange(items);
     };
 
@@ -80,7 +79,6 @@ class Legend extends Component {
     updateItem = (newItems) => {
         const modelToUpdate = legendItemStore.getState() && legendItemStore.getState().model;
         const isNewLegendItem = newItems.every(model => model !== modelToUpdate);
-
         return this.props.onItemsChange([].concat(
             newItems,
             isNewLegendItem ? modelToUpdate : [],
@@ -228,6 +226,7 @@ class Legend extends Component {
 
 Legend.propTypes = {
     items: PropTypes.array.isRequired,
+    onItemsChange: PropTypes.func.isRequired,
 };
 
 Legend.contextTypes = {
