@@ -128,25 +128,25 @@ class ProgramOperandSelector extends Component {
             .catch(e => log.error(e));
     }
 
-    onProgramTrackedEntityAttributeSelected(value) {
+    onProgramTrackedEntityAttributeSelected = (value) => {
         const programTrackedEntityAttributeFormula = ['A{', value, '}'].join('');
 
         this.props.programOperandSelected(programTrackedEntityAttributeFormula);
     }
 
-    onProgramIndicatorSelected(value) {
+    onProgramIndicatorSelected = (value) => {
         const programIndicatorFormula = ['I{', value, '}'].join('');
 
         this.props.programOperandSelected(programIndicatorFormula);
     }
 
-    onProgramDataElementSelected(value) {
+    onProgramDataElementSelected = (value) => {
         const programDataElementSelected = ['D{', value, '}'].join('');
 
         this.props.programOperandSelected(programDataElementSelected);
     }
 
-    onLoadProgramDataOperands(event) {
+    onLoadProgramDataOperands = (event) => {
         const api = this.context.d2.Api.getApi();
         const programId = event.target.value;
 

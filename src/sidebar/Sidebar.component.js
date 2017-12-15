@@ -63,7 +63,7 @@ class Sidebar extends Component {
         }
     }
 
-    setSection(key) {
+    setSection = (key) => {
         // TODO: Refactor as this behavior is sort of silly. The current version of the SideBar with managed state should
         // probably be a HoC and a simpler version of the header bar should be available for more dynamic scenarios.
         this.props.onSectionClick(key);
@@ -74,7 +74,7 @@ class Sidebar extends Component {
         }
     }
 
-    changeSearchText() {
+    changeSearchText = () => {
         this.setState({ searchText: this.searchBox.getValue() }, () => {
             if (this.props.onChangeSearchText) {
                 this.props.onChangeSearchText(this.state.searchText);
@@ -82,7 +82,7 @@ class Sidebar extends Component {
         });
     }
 
-    onClear() {
+    onClear = () => {
         this.setState({ searchText: '' }, () => {
             if (this.props.onChangeSearchText) {
                 this.props.onChangeSearchText(this.state.searchText);
@@ -90,7 +90,7 @@ class Sidebar extends Component {
         });
     }
 
-    clearSearchBox() {
+    clearSearchBox = () => {
         this.setState({ searchText: '' });
     }
 
@@ -191,7 +191,7 @@ Sidebar.defaultProps = {
     styles: {
         leftBar: {},
     },
-    onSectionClick: () => {},
+    onSectionClick: () => { },
 };
 
 export default Sidebar;
