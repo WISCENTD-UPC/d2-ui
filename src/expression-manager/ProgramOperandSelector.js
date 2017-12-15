@@ -1,3 +1,5 @@
+/* eslint-disable react/no-multi-comp */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from 'material-ui/Tabs/Tabs';
@@ -126,6 +128,42 @@ class ProgramOperandSelector extends Component {
             .catch(e => log.error(e));
     }
 
+    onProgramTrackedEntityAttributeSelected(value) {
+        const programTrackedEntityAttributeFormula = ['A{', value, '}'].join('');
+
+        this.props.programOperandSelected(programTrackedEntityAttributeFormula);
+    }
+
+    onProgramIndicatorSelected(value) {
+        const programIndicatorFormula = ['I{', value, '}'].join('');
+
+        this.props.programOperandSelected(programIndicatorFormula);
+    }
+
+    onProgramDataElementSelected(value) {
+        const programDataElementSelected = ['D{', value, '}'].join('');
+
+        this.props.programOperandSelected(programDataElementSelected);
+    }
+
+    onLoadProgramDataOperands(event) {
+        const api = this.context.d2.Api.getApi();
+        const programId = event.target.value;
+
+        api.get('programDataElements', { program: programId, fields: 'id,displayName,dimensionItem', paging: false, order: 'displayName:asc' })
+            .then((programDataElements) => {
+                this.setState({
+                    selectedProgram: programId,
+                    programDataElementOptions: programDataElements.programDataElements
+                        .map(programDataElement => ({ value: programDataElement.dimensionItem, label: programDataElement.displayName })),
+                    programIndicatorOptions: this.state.programIndicators.get(programId) || [],
+                    programTrackedEntityAttributeOptions: this.state.programAttributes.get(programId) || [],
+                });
+            })
+            .catch(error => log.error(error));
+    }
+
+
     renderTabs() {
         const listStyle = { width: '100%', outline: 'none', border: 'none', padding: '0rem 1rem' };
         const noValueMessageStyle = {
@@ -135,31 +173,40 @@ class ProgramOperandSelector extends Component {
         return (
             <Tabs tabItemContainerStyle={{ backgroundColor: '#FFF' }}>
                 <Tab label={this.getTranslation('program_data_elements')} style={{ color: '#333' }}>
-                    {!this.state.programDataElementOptions.length ? <div style={noValueMessageStyle}>{this.getTranslation('no_program_data_elements')}</div> :
-                        <ListSelect
-                        onItemDoubleClick={this.onProgramDataElementSelected}
-                        source={this.state.programDataElementOptions}
-                        listStyle={listStyle}
-                        size={10}
-                    />}
+                    {
+                        !this.state.programDataElementOptions.length ?
+                            <div style={noValueMessageStyle}>{this.getTranslation('no_program_data_elements')}</div> :
+                            <ListSelect
+                                onItemDoubleClick={this.onProgramDataElementSelected}
+                                source={this.state.programDataElementOptions}
+                                listStyle={listStyle}
+                                size={10}
+                            />
+                    }
                 </Tab>
                 <Tab label={this.getTranslation('program_tracked_entity_attributes')} style={{ color: '#333' }}>
-                    {!this.state.programTrackedEntityAttributeOptions.length ? <div style={noValueMessageStyle}>{this.getTranslation('no_tracked_entity_attributes')}</div> :
-                    <ListSelect
-                            onItemDoubleClick={this.onProgramTrackedEntityAttributeSelected}
-                            source={this.state.programTrackedEntityAttributeOptions}
-                            listStyle={listStyle}
-                            size={10}
-                        />}
+                    {
+                        !this.state.programTrackedEntityAttributeOptions.length ?
+                            <div style={noValueMessageStyle}>{this.getTranslation('no_tracked_entity_attributes')}</div> :
+                            <ListSelect
+                                onItemDoubleClick={this.onProgramTrackedEntityAttributeSelected}
+                                source={this.state.programTrackedEntityAttributeOptions}
+                                listStyle={listStyle}
+                                size={10}
+                            />
+                    }
                 </Tab>
                 <Tab label={this.getTranslation('program_indicators')} style={{ color: '#333' }}>
-                    {!this.state.programIndicatorOptions.length ? <div style={noValueMessageStyle}>{this.getTranslation('no_program_indicators')}</div> :
-                    <ListSelect
-                            onItemDoubleClick={this.onProgramIndicatorSelected}
-                            source={this.state.programIndicatorOptions}
-                            listStyle={listStyle}
-                            size={10}
-                        />}
+                    {
+                        !this.state.programIndicatorOptions.length ?
+                            <div style={noValueMessageStyle}>{this.getTranslation('no_program_indicators')}</div> :
+                            <ListSelect
+                                onItemDoubleClick={this.onProgramIndicatorSelected}
+                                source={this.state.programIndicatorOptions}
+                                listStyle={listStyle}
+                                size={10}
+                            />
+                    }
                 </Tab>
             </Tabs>
         );
@@ -180,41 +227,6 @@ class ProgramOperandSelector extends Component {
                 {this.state.selectedProgram ? this.renderTabs() : null}
             </div>
         );
-    }
-
-    onLoadProgramDataOperands(event) {
-        const api = this.context.d2.Api.getApi();
-        const programId = event.target.value;
-
-        api.get('programDataElements', { program: programId, fields: 'id,displayName,dimensionItem', paging: false, order: 'displayName:asc' })
-            .then((programDataElements) => {
-                this.setState({
-                    selectedProgram: programId,
-                    programDataElementOptions: programDataElements.programDataElements
-                        .map(programDataElement => ({ value: programDataElement.dimensionItem, label: programDataElement.displayName })),
-                    programIndicatorOptions: this.state.programIndicators.get(programId) || [],
-                    programTrackedEntityAttributeOptions: this.state.programAttributes.get(programId) || [],
-                });
-            })
-            .catch(error => log.error(error));
-    }
-
-    onProgramTrackedEntityAttributeSelected(value) {
-        const programTrackedEntityAttributeFormula = ['A{', value, '}'].join('');
-
-        this.props.programOperandSelected(programTrackedEntityAttributeFormula);
-    }
-
-    onProgramIndicatorSelected(value) {
-        const programIndicatorFormula = ['I{', value, '}'].join('');
-
-        this.props.programOperandSelected(programIndicatorFormula);
-    }
-
-    onProgramDataElementSelected(value) {
-        const programDataElementSelected = ['D{', value, '}'].join('');
-
-        this.props.programOperandSelected(programDataElementSelected);
     }
 }
 
