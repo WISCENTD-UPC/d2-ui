@@ -77,6 +77,7 @@ function renderIconPicker() {
                         Without initial value
                         <IconPicker
                             options={options}
+                            onChange={onChange}
                             imgPath="./images/orgunitgroup"
                             labelText="Symbol"
                         />

@@ -23,7 +23,7 @@ function createCallbackWithFakeEventFromMaterialSelectField(callback) {
 function DropDown({ onFocus, onBlur, onChange, value, disabled, menuItems, includeEmpty, emptyLabel, noOptionsLabel, ...other }) {
     const menuItemArray = Array.isArray(menuItems) ? menuItems : menuItems.toArray();
     const hasOptions = menuItemArray.length > 0;
-
+    
     return (
         <SelectField
             value={hasOptions ? value : 1}
@@ -54,6 +54,7 @@ DropDown.propTypes = {
         PropTypes.array,
         PropTypes.object,
     ]),
+    disabled: PropTypes.bool,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     onChange: PropTypes.func.isRequired,
@@ -63,11 +64,8 @@ DropDown.propTypes = {
 };
 
 DropDown.defaultProps = {
-    value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-        PropTypes.bool,
-    ]),
+    defaultValue: '',
+    value: null,
     menuItems: PropTypes.oneOfType([
         PropTypes.array,
         PropTypes.object,
@@ -76,6 +74,7 @@ DropDown.defaultProps = {
     onBlur: PropTypes.func,
     noOptionsLabel: '-',
     includeEmpty: false,
+    disabled: false,
     emptyLabel: '',
 };
 

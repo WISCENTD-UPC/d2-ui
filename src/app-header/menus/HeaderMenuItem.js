@@ -16,9 +16,18 @@ class HeaderMenuItem extends Component {
         this.state = {
             hovering: false,
         };
+    }
 
-        this.onMouseEnter = this.onMouseEnter.bind(this);
-        this.onMouseLeave = this.onMouseLeave.bind(this);
+    onMouseEnter = () => {
+        this.setState({
+            hovering: true,
+        });
+    }
+
+    onMouseLeave = () => {
+        this.setState({
+            hovering: false,
+        });
     }
 
     render() {
@@ -34,18 +43,6 @@ class HeaderMenuItem extends Component {
                 <div style={styles.menuItemLabel}>{props.label}</div>
             </a>
         );
-    }
-
-    onMouseEnter() {
-        this.setState({
-            hovering: true,
-        });
-    }
-
-    onMouseLeave() {
-        this.setState({
-            hovering: false,
-        });
     }
 }
 

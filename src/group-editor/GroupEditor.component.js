@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 
 // Material UI
 import Paper from 'material-ui/Paper/Paper';

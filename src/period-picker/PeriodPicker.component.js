@@ -124,7 +124,6 @@ class PeriodPicker extends React.Component {
     renderOptionPicker(name, options) {
         const changeState = (e, i, value) => this.setState({ [name]: value }, this.handleChange);
         const isInvalid = name === 'week' && this.state.invalidWeek;
-
         return (
             <SelectField
                 value={this.state[name]}
@@ -134,7 +133,7 @@ class PeriodPicker extends React.Component {
                 floatingLabelStyle={isInvalid ? { color: 'red' } : {}}
             >
                 <MenuItem key="" value={this.state[name]} primaryText="&nbsp;" />
-                {Object.keys(options).sort().map((value) => (
+                {Object.keys(options).sort().map(value => (
                     <MenuItem
                         key={value}
                         value={value}

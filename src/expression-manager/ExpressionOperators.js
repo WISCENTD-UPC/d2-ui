@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import classes from 'classnames';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 
-class ExpressionOperators extends Component {    
+class ExpressionOperators extends Component {
+    createOperatorClick(operatorValue) {
+        return function operatorButtonClick() {
+            this.props.operatorClicked(operatorValue);
+        }.bind(this);
+    }
+
     render() {
         const classList = classes('expression-operators');
 
@@ -22,12 +28,6 @@ class ExpressionOperators extends Component {
                 <FlatButton style={operatorButtonStyle} onClick={this.createOperatorClick(' [days] ')}>Days</FlatButton>
             </div>
         );
-    }
-
-    createOperatorClick(operatorValue) {
-        return function operatorButtonClick() {
-            this.props.operatorClicked(operatorValue);
-        }.bind(this);
     }
 }
 

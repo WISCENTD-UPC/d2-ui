@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classes from 'classnames';
 import FormField from './FormField.component';
-import createFormValidator from './FormValidator';
-import { FormFieldStatuses } from './FormValidator';
+import createFormValidator, { FormFieldStatuses } from './FormValidator';
 
 class Form extends Component {
     constructor(props, context) {
@@ -31,6 +30,19 @@ class Form extends Component {
         this.disposables.forEach((d) => {
             d.unsubscribe();
         });
+    }
+
+    isValid() {
+        return true;
+    }
+
+    updateRequest(fieldConfig, event) {
+        this.props.formValidator.runFor(fieldConfig.name, event.target.value, this.props.source);
+        this.props.onFormFieldUpdate && this.props.onFormFieldUpdate(
+            fieldConfig.name, fieldConfig.beforeUpdateConverter
+                ? fieldConfig.beforeUpdateConverter(event.target.value, fieldConfig)
+                : event.target.value,
+        );
     }
 
     renderFieldsFromFieldConfigs() {
@@ -72,19 +84,6 @@ class Form extends Component {
                 {this.renderFieldsFromFieldConfigs()}
                 {this.props.children}
             </form>
-        );
-    }
-
-    isValid() {
-        return true;
-    }
-
-    updateRequest(fieldConfig, event) {
-        this.props.formValidator.runFor(fieldConfig.name, event.target.value, this.props.source);
-        this.props.onFormFieldUpdate && this.props.onFormFieldUpdate(
-            fieldConfig.name, fieldConfig.beforeUpdateConverter
-                ? fieldConfig.beforeUpdateConverter(event.target.value, fieldConfig)
-                : event.target.value,
         );
     }
 }

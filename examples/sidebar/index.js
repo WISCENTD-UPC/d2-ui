@@ -165,4 +165,9 @@ SidebarExample.propTypes = {
     searchText: PropTypes.string,
 };
 
+SidebarExample.defultProps = {
+    currentSection: '',
+    searchText: '',
+};
+
 changeSectionHandler(sections[0].key);

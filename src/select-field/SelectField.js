@@ -16,7 +16,7 @@ const SelectField = ({ label, items, multiple, value, onChange, style, selector,
             className={className}
             style={style}
         >
-            {children ? children : items.map(item => (
+            {children || items.map(item => (
                 <MenuItem
                     key={item.id}
                     value={item.id}
@@ -31,7 +31,7 @@ const SelectField = ({ label, items, multiple, value, onChange, style, selector,
 
 
 SelectField.propTypes = {
-
+    children: PropTypes.array,
     /**
      * The label of the select field
      */
@@ -41,7 +41,10 @@ SelectField.propTypes = {
      * The select field items (rendered as MenuItems)
      */
     items: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]).isRequired,
+        id: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
+        ]).isRequired,
         name: PropTypes.string,
     })),
 
@@ -65,9 +68,14 @@ SelectField.propTypes = {
         PropTypes.number,
         PropTypes.arrayOf(PropTypes.oneOfType([
             PropTypes.string,
-            PropTypes.number
-        ]))
+            PropTypes.number,
+        ])),
     ]),
+
+    /**
+     * if multiple is true, the selectField will be a multiSelector
+     */
+    multiple: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element
@@ -83,6 +91,11 @@ SelectField.propTypes = {
 
 SelectField.defaultProps = {
     items: [],
+    multiple: false,
+    style: {},
+    value: '',
+    selector: '',
+    label: '',
 };
 
 

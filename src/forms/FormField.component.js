@@ -18,10 +18,18 @@ const emptyComponent = () => {};
  */
 class FormField extends Component {  // eslint-disable-line react/no-multi-comp
     state = {
-        isFocused: false
+        isFocused: false,
     };
 
-    renderHelpText() {
+    onFocus = () => {
+        this.setState({ isFocused: true });
+    }
+
+    onBlur = () => {
+        this.setState({ isFocused: false });
+    }
+
+    renderHelpText = () => {
         if ((!this.props.fieldOptions || !this.props.fieldOptions.helpText) || this.props.errorMessage) {
             return null;
         }
@@ -79,14 +87,6 @@ class FormField extends Component {  // eslint-disable-line react/no-multi-comp
                 {this.props.isValidating ? <LinearProgress mode="indeterminate" /> : null}
             </div>
         );
-    }
-
-    onFocus() {
-        this.setState({ isFocused: true });
-    }
-
-    onBlur() {
-        this.setState({ isFocused: false });
     }
 }
 

@@ -63,7 +63,15 @@ class Sidebar extends Component {
         }
     }
 
-    setSection(key) {
+    onClear = () => {
+        this.setState({ searchText: '' }, () => {
+            if (this.props.onChangeSearchText) {
+                this.props.onChangeSearchText(this.state.searchText);
+            }
+        });
+    }
+
+    setSection = (key) => {
         // TODO: Refactor as this behavior is sort of silly. The current version of the SideBar with managed state should
         // probably be a HoC and a simpler version of the header bar should be available for more dynamic scenarios.
         this.props.onSectionClick(key);
@@ -74,7 +82,7 @@ class Sidebar extends Component {
         }
     }
 
-    changeSearchText() {
+    changeSearchText = () => {
         this.setState({ searchText: this.searchBox.getValue() }, () => {
             if (this.props.onChangeSearchText) {
                 this.props.onChangeSearchText(this.state.searchText);
@@ -82,19 +90,11 @@ class Sidebar extends Component {
         });
     }
 
-    onClear() {
-        this.setState({ searchText: '' }, () => {
-            if (this.props.onChangeSearchText) {
-                this.props.onChangeSearchText(this.state.searchText);
-            }
-        });
-    }
-
-    clearSearchBox() {
+    clearSearchBox = () => {
         this.setState({ searchText: '' });
     }
 
-    renderSidebarButtons() {
+    renderSidebarButtons = () => {
         if (this.props.sideBarButtons) {
             return (
                 <div style={{ padding: '1rem 0 0' }}>{this.props.sideBarButtons}</div>
@@ -103,7 +103,7 @@ class Sidebar extends Component {
         return null;
     }
 
-    renderSearchField() {
+    renderSearchField = () => {
         const d2 = this.context.d2;
 
         if (this.props.showSearchField) {
@@ -116,7 +116,9 @@ class Sidebar extends Component {
                         onChange={this.changeSearchText}
                         ref={(ref) => { this.searchBox = ref; }}
                     />
-                    {this.state.searchText ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this.onClear}>clear</FontIcon> : undefined}
+                    {this.state.searchText
+                        ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this.onClear}> clear </FontIcon>
+                        : undefined}
                 </div>
             );
         }
@@ -174,6 +176,7 @@ Sidebar.propTypes = {
     onSectionClick: PropTypes.func,
     showSearchField: PropTypes.bool,
     searchFieldLabel: PropTypes.string,
+    searchText: PropTypes.string,
     onChangeSearchText: PropTypes.func,
     sideBarButtons: PropTypes.element,
     styles: PropTypes.shape({
@@ -187,11 +190,15 @@ Sidebar.contextTypes = {
 };
 
 Sidebar.defaultProps = {
+    sideBarButtons: undefined,
     showSearchField: false,
     styles: {
         leftBar: {},
     },
     onSectionClick: () => {},
+    searchText: '',
+    searchFieldLabel: '',
+    currentSection: '',
 };
 
 export default Sidebar;

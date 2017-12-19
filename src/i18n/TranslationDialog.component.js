@@ -16,10 +16,27 @@ class TranslationDialog extends Component {
         this.state = {
             TranslationForm: getTranslationFormFor(this.props.objectToTranslate),
         };
+    }
 
-        this.translationSaved = this.translationSaved.bind(this);
-        this.translationError = this.translationError.bind(this);
-        this.closeSharingDialog = this.closeSharingDialog.bind(this);
+    componentWillReceiveProps(newProps) {
+        if (newProps.objectToTranslate) {
+            this.setState({
+                TranslationForm: getTranslationFormFor(newProps.objectToTranslate),
+            });
+        }
+    }
+
+    closeSharingDialog = () => {
+        this.props.onRequestClose();
+    }
+
+    translationSaved = () => {
+        this.props.onTranslationSaved();
+        this.closeSharingDialog();
+    }
+
+    translationError = () => {
+        this.props.onTranslationError();
     }
 
     render() {
@@ -39,27 +56,6 @@ class TranslationDialog extends Component {
             </Dialog>
         );
     }
-
-    componentWillReceiveProps(newProps) {
-        if (newProps.objectToTranslate) {
-            this.setState({
-                TranslationForm: getTranslationFormFor(newProps.objectToTranslate),
-            });
-        }
-    }
-
-    closeSharingDialog() {
-        this.props.onRequestClose();
-    }
-
-    translationSaved() {
-        this.props.onTranslationSaved();
-        this.closeSharingDialog();
-    }
-
-    translationError() {
-        this.props.onTranslationError();
-    }
 }
 
 TranslationDialog.propTypes = {
@@ -71,6 +67,11 @@ TranslationDialog.propTypes = {
     open: PropTypes.bool,
     onRequestClose: PropTypes.func.isRequired,
     fieldsToTranslate: PropTypes.array,
+};
+
+TranslationDialog.defaultProps = {
+    open: false,
+    fieldsToTranslate: [],
 };
 
 TranslationDialog.contextTypes = {

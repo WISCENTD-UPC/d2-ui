@@ -6,7 +6,11 @@ import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
 import ListSelectAsync from '../list-select/ListSelectAsync.component';
 import Pagination from '../pagination/Pagination.component';
 import Store from '../store/Store';
-import { createDataElementOperandActions, subscribeDataElementActionsToStore } from './dataElementOperandSelector.actions';
+
+import {
+    createDataElementOperandActions,
+    subscribeDataElementActionsToStore,
+} from './dataElementOperandSelector.actions';
 
 config.i18n.strings.add('search_by_name');
 
@@ -27,7 +31,10 @@ class DataElementOperandSelector extends Component {
     };
 
     componentWillMount() {
-        this.actionSubscriptions = subscribeDataElementActionsToStore(this.props.dataElementOperandSelectorActions, this.props.dataElementOperandStore);
+        this.actionSubscriptions = subscribeDataElementActionsToStore(
+            this.props.dataElementOperandSelectorActions,
+            this.props.dataElementOperandStore,
+        );
 
         if (this.props.dataElementOperandSelectorActions) {
             this.props.dataElementOperandSelectorActions.loadList();
@@ -58,17 +65,17 @@ class DataElementOperandSelector extends Component {
         this.actionSubscriptions.forEach(subscription => subscription.unsubscribe());
     }
 
-    getNextPage() {
+    getNextPage = () => {
         this.setState({ isLoading: true });
         this.props.dataElementOperandSelectorActions.getNextPage(this.state.pager, this.state.searchValue);
     }
 
-    getPreviousPage() {
+    getPreviousPage = () => {
         this.setState({ isLoading: true });
         this.props.dataElementOperandSelectorActions.getPreviousPage(this.state.pager, this.state.searchValue);
     }
 
-    searchDataElement(event) {
+    searchDataElement = (event) => {
         const value = event.target.value;
         this.props.dataElementOperandSelectorActions.search(value)
             .subscribe(() => {

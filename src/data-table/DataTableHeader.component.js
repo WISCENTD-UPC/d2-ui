@@ -22,7 +22,7 @@ class DataTableHeader extends Component {
 
         return (
             <div className={classList}>
-                {this.props.name ? this.getTranslation(camelCaseToUnderscores(this.props.name)) : null}
+                {this.props.name && this.getTranslation(camelCaseToUnderscores(this.props.name))}
             </div>
         );
     }
@@ -35,6 +35,11 @@ DataTableHeader.propTypes = {
 
 DataTableHeader.contextTypes = {
     d2: PropTypes.object,
+};
+
+DataTableHeader.defaultProps = {
+    isOdd: false,
+    name: '',
 };
 
 export default DataTableHeader;

@@ -14,7 +14,7 @@ class MultiToggle extends Component {
         }, []),
     };
 
-    handleToggle(value, event, checked) {
+    handleToggle = (value, event, checked) => {
         this.setState((oldState) => {
             if (checked) {
                 if (oldState.values.indexOf(value) === -1) {

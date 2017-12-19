@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import styles, { whenWidthLargerThan1150 } from './header-bar-styles';
 import getBaseUrlFromD2ApiUrl from './getBaseUrlFromD2ApiUrl';
 
@@ -34,7 +34,7 @@ class InnerHeader extends Component {
     };
 
     componentWillMount() {
-        this.getSystemSettings(this.context.d2)
+        this.getSystemSettings()
             .then(this.getHeaderBarData)
             .catch(this.loadDataFromLocalStorageIfAvailable)
             .then(saveToLocalStorage)
@@ -62,12 +62,12 @@ class InnerHeader extends Component {
         }
     }
 
-    getSystemSettings(d2) {
-        if (!d2.system) {
+    getSystemSettings() {
+        if (!this.context.d2.system) {
             return Promise.reject(new Error('Offline'));
         }
 
-        return d2.system.settings.all();
+        return this.context.d2.system.settings.all();
     }
 
     getHeaderBarData(systemSettings) {
@@ -108,6 +108,59 @@ class InnerHeader extends Component {
             return userStyle.split('/')[0];
         }
         return defaultStyle;
+    }
+
+    setHeaderData(userStyleUrl, title) {
+        this.addUserStyleStylesheet(this.getStylesheetUrl(userStyleUrl));
+        this.setHeaderTitle(title);
+    }
+
+    setHeaderBarProp(name, value) {
+        this.setState({
+            headerBar: Object.assign({}, this.state.headerBar, {
+                [name]: value,
+            }),
+        });
+    }
+
+    setHeaderTitle(applicationTitle) {
+        this.setHeaderBarProp('title', applicationTitle || 'District Health Information Software 2');
+    }
+
+    loadDataFromLocalStorageIfAvailable() {
+        let title;
+        let userStyle;
+
+        // Load values from localStorage if they are available
+        if (islocalStorageSupported()) {
+            title = localStorage.getItem('dhis2.menu.ui.headerBar.title');
+            userStyle = localStorage.getItem('dhis2.menu.ui.headerBar.userStyle');
+        }
+
+        return {
+            userStyleUrl: userStyle,
+            title,
+        };
+    }
+
+    requestUserStyle() {
+        const api = this.context.d2.Api.getApi();
+        return api.get('userSettings/keyStyle')
+            .then(response => response.trim());
+    }
+
+    isValidUserStyle(userStyle) {
+        return typeof userStyle === 'string' && /^[A-z0-9_\-]+$/.test(userStyle);
+    }
+
+    addUserStyleStylesheet(stylesheetUrl) {
+        const linkElement = document.createElement('link');
+        linkElement.setAttribute('href', stylesheetUrl);
+        linkElement.setAttribute('type', 'text/css');
+        linkElement.setAttribute('rel', 'stylesheet');
+        linkElement.setAttribute('media', 'screen,print');
+
+        document.querySelector('head').appendChild(linkElement);
     }
 
     render() {
@@ -177,59 +230,6 @@ class InnerHeader extends Component {
                 </div>
             </div>
         );
-    }
-
-    loadDataFromLocalStorageIfAvailable() {
-        let title;
-        let userStyle;
-
-        // Load values from localStorage if they are available
-        if (islocalStorageSupported()) {
-            title = localStorage.getItem('dhis2.menu.ui.headerBar.title');
-            userStyle = localStorage.getItem('dhis2.menu.ui.headerBar.userStyle');
-        }
-
-        return {
-            userStyleUrl: userStyle,
-            title,
-        };
-    }
-
-    setHeaderData(userStyleUrl, title) {
-        this.addUserStyleStylesheet(this.getStylesheetUrl(userStyleUrl));
-        this.setHeaderTitle(title);
-    }
-
-    setHeaderBarProp(name, value) {
-        this.setState({
-            headerBar: Object.assign({}, this.state.headerBar, {
-                [name]: value,
-            }),
-        });
-    }
-
-    setHeaderTitle(applicationTitle) {
-        this.setHeaderBarProp('title', applicationTitle || 'District Health Information Software 2');
-    }
-
-    requestUserStyle() {
-        const api = this.context.d2.Api.getApi();
-        return api.get('userSettings/keyStyle')
-            .then(response => response.trim());
-    }
-
-    isValidUserStyle(userStyle) {
-        return typeof userStyle === 'string' && /^[A-z0-9_\-]+$/.test(userStyle);
-    }
-
-    addUserStyleStylesheet(stylesheetUrl) {
-        const linkElement = document.createElement('link');
-        linkElement.setAttribute('href', stylesheetUrl);
-        linkElement.setAttribute('type', 'text/css');
-        linkElement.setAttribute('rel', 'stylesheet');
-        linkElement.setAttribute('media', 'screen,print');
-
-        document.querySelector('head').appendChild(linkElement);
     }
 }
 

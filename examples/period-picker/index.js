@@ -123,7 +123,7 @@ ReactDOM.render(<div>Initialising D2...</div>, el);
 
 D2Lib.config.baseUrl = baseUrl;
 D2Lib.init({ baseUrl })
-    .then(d2 => {
+    .then((d2) => {
         Object.assign(d2.i18n.translations, {
             'day': 'Day',
             'week': 'Week',
@@ -161,5 +161,5 @@ D2Lib.init({ baseUrl })
             'oct-mar': 'Oct - March',
         });
 
-        ReactDOM.render(<PeriodPickerExample d2={d2}/>, el);
+        ReactDOM.render(<PeriodPickerExample d2={d2} />, el);
     });

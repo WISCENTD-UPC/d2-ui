@@ -1,20 +1,22 @@
 import React from 'react';
 import { render } from 'react-dom';
+
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MenuItem from 'material-ui/MenuItem';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import SelectField from '../../src/select-field/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 
 injectTapEventPlugin();
 
 const items = [{
     id: 'cat',
     name: 'Cat',
-},{
+}, {
     id: 'mouse',
     name: 'Mouse',
-},{
+}, {
     id: 'dog',
     name: 'Dog',
 }];
@@ -38,43 +40,43 @@ const selectFields = (
             />
             <SelectField
                 items={items}
-                value='cat'
+                value="cat"
                 onChange={() => {}}
             />
             <SelectField
-                label='Select animal'
+                label="Select animal"
                 items={items}
                 onChange={() => {}}
             />
             <SelectField
-                label='Select multiple'
+                label="Select multiple"
                 items={items}
                 value={['cat', 'dog']}
-                multiple={true}
+                multiple
                 onChange={() => {}}
             />
             <SelectField
-                label='Select animal'
-                value='dog'
+                label="Select animal"
+                value="dog"
                 items={items}
                 onChange={() => {}}
             />
             <SelectField
-                label='onChange event'
+                label="onChange event"
                 items={items}
                 onChange={(item) => alert(JSON.stringify(item))}
             />
             <SelectField
-                label='Children'
-                value='cat'
+                label="Children"
+                value="cat"
                 onChange={(item) => alert(item)}
             >
                 <MenuItem value={'none'}>
                     <em>None</em>
                 </MenuItem>
-                <MenuItem value='cat' primaryText='Cat' />
-                <MenuItem value='mouse' primaryText='Mouse' />
-                <MenuItem value='dog' primaryText='Dog' />
+                <MenuItem value="cat" primaryText="Cat" />
+                <MenuItem value="mouse" primaryText="Mouse" />
+                <MenuItem value="dog" primaryText="Dog" />
             </SelectField>
         </div>
     </MuiThemeProvider>

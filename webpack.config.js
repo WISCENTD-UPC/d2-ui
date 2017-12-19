@@ -20,7 +20,7 @@ try {
     };
 }
 
-const identity = (v) => v;
+const identity = v => v;
 function log(req, res, opt) {
     req.headers.Authorization = dhisConfig.authorization;
     console.log('[PROXY]'.cyan.bold, req.method.green.bold, req.url.magenta, '=>'.dim, opt.target.dim);
@@ -29,31 +29,31 @@ function log(req, res, opt) {
 module.exports = {
     context: __dirname,
     entry: isProduction() ? {
-            'header-bar': './src/app-header/index.js',
-        } : {
-            treeview: './examples/tree-view',
-            datatable: './examples/data-table',
-            orgunittree: './examples/org-unit-tree',
-            orgunitselect: './examples/org-unit-select',
-            sharing: './examples/sharing',
-            sidebar: './examples/sidebar',
-            iconpicker: './examples/icon-picker',
-            formbuilder: './examples/form-builder',
-            // formulaeditor: './examples/formula-editor',
-            headerbar: './examples/header-bar',
-            'header-bar': './src/app-header/index.js',
-            legend: './examples/legend',
-            // translation: './examples/translation',
-            expressionmanager: './examples/expression-manager',
-            groupeditor: './examples/group-editor',
-            periodpicker: './examples/period-picker',
-            button: './examples/button',
-            svgicon: './examples/svg-icon',
-            textfield: './examples/text-field',
-            selectfield: './examples/select-field',
-            tabs: './examples/tabs',
-            chip: './examples/chip',
-        },
+        'header-bar': './src/app-header/index.js',
+    } : {
+        treeview: './examples/tree-view',
+        datatable: './examples/data-table',
+        orgunittree: './examples/org-unit-tree',
+        orgunitselect: './examples/org-unit-select',
+        sharing: './examples/sharing',
+        sidebar: './examples/sidebar',
+        iconpicker: './examples/icon-picker',
+        formbuilder: './examples/form-builder',
+        // formulaeditor: './examples/formula-editor',
+        headerbar: './examples/header-bar',
+        'header-bar': './src/app-header/index.js',
+        legend: './examples/legend',
+        // translation: './examples/translation',
+        expressionmanager: './examples/expression-manager',
+        groupeditor: './examples/group-editor',
+        periodpicker: './examples/period-picker',
+        button: './examples/button',
+        svgicon: './examples/svg-icon',
+        textfield: './examples/text-field',
+        selectfield: './examples/select-field',
+        tabs: './examples/tabs',
+        chip: './examples/chip',
+    },
     devtool: 'source-map',
     output: {
         library: 'Dhis2HeaderBar',

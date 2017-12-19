@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { render } from 'react-dom';
 
-import {render} from 'react-dom';
-import PropTypes from 'prop-types';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { blue500, blue700, lightBlack, grey300, grey500, white, darkBlack } from 'material-ui/styles/colors';
 import { fade } from 'material-ui/utils/colorManipulator';
@@ -26,6 +25,7 @@ const style = {
         disabledColor: fade(darkBlack, 0.3),
     },
 };
+
 function renderExamples() {
     class Example extends React.Component {
         getChildContext() {
@@ -40,6 +40,10 @@ function renderExamples() {
     }
     Example.childContextTypes = {
         muiTheme: PropTypes.object,
+    };
+
+    Example.propTypes = {
+        children: PropTypes.object.isRequired,
     };
 
     const app = (
