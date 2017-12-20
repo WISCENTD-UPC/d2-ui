@@ -110,7 +110,7 @@ class OrgUnitSelectExample extends React.Component {
         }
 
         this.setState(state => ({
-            rootWithMembers: mergeChildren(state.rootWithMembers, children)
+            rootWithMembers: mergeChildren(state.rootWithMembers, children),
         }));
     }
 
