@@ -36,6 +36,11 @@ const icons = (
                 <SvgIcon>{children}</SvgIcon>
             </div>
             <div style={cardStyle}>
+                <h3>Icon with custom dimensions</h3>
+                <SvgIcon icon="Launch" style={{ width: '20px', height: '20px' }} />
+                <SvgIcon icon="Launch" style={{ width: '32px', height: '32px' }} />
+            </div>
+            <div style={cardStyle}>
                 <h3>Icon not found</h3>
                 <SvgIcon icon={'DoesntExist'} />
             </div>
@@ -84,12 +89,24 @@ const icons = (
                 <SvgIcon icon={'Delete'} />
             </div>
             <div style={cardStyle}>
+                <h3>Description</h3>
+                <SvgIcon icon={'Description'} />
+            </div>
+            <div style={cardStyle}>
                 <h3>Done</h3>
                 <SvgIcon icon={'Done'} />
             </div>
             <div style={cardStyle}>
                 <h3>DragHandle</h3>
                 <SvgIcon icon={'DragHandle'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Extension</h3>
+                <SvgIcon icon={'Extension'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>FontDownload</h3>
+                <SvgIcon icon={'FontDownload'} />
             </div>
             <div style={cardStyle}>
                 <h3>GridOn</h3>
@@ -110,6 +127,10 @@ const icons = (
             <div style={cardStyle}>
                 <h3>Launch</h3>
                 <SvgIcon icon={'Launch'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>List</h3>
+                <SvgIcon icon={'List'} />
             </div>
             <div style={cardStyle}>
                 <h3>Message</h3>
@@ -138,6 +159,10 @@ const icons = (
             <div style={cardStyle}>
                 <h3>Room</h3>
                 <SvgIcon icon={'Room'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Search</h3>
+                <SvgIcon icon={'Search'} />
             </div>
             <div style={cardStyle}>
                 <h3>ShowChart</h3>

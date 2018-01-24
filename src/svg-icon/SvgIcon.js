@@ -12,13 +12,17 @@ import Clear from 'material-ui/svg-icons/content/clear';
 import Close from 'material-ui/svg-icons/navigation/close';
 import Create from 'material-ui/svg-icons/content/create';
 import Delete from 'material-ui/svg-icons/action/delete';
+import Description from 'material-ui/svg-icons/action/description';
 import Done from 'material-ui/svg-icons/action/done';
 import DragHandle from 'material-ui/svg-icons/editor/drag-handle';
+import Extension from 'material-ui/svg-icons/action/extension';
+import FontDownload from 'material-ui/svg-icons/content/font-download';
 import Group from 'material-ui/svg-icons/social/group';
 import GridOn from 'material-ui/svg-icons/image/grid-on';
 import InfoOutline from 'material-ui/svg-icons/action/info-outline';
 import InsertChart from 'material-ui/svg-icons/editor/insert-chart';
 import Launch from 'material-ui/svg-icons/action/launch';
+import List from 'material-ui/svg-icons/action/list';
 import Message from 'material-ui/svg-icons/communication/message';
 import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
 import NotInterested from 'material-ui/svg-icons/av/not-interested';
@@ -26,6 +30,7 @@ import Person from 'material-ui/svg-icons/social/person';
 import Public from 'material-ui/svg-icons/social/public';
 import Reply from 'material-ui/svg-icons/content/reply';
 import Room from 'material-ui/svg-icons/action/room';
+import Search from 'material-ui/svg-icons/action/search';
 import ShowChart from 'material-ui/svg-icons/editor/show-chart';
 import Star from 'material-ui/svg-icons/toggle/star';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
@@ -50,13 +55,17 @@ const icons = {
     Close,
     Create,
     Delete,
+    Description,
     Done,
     DragHandle,
+    Extension,
+    FontDownload,
     GridOn,
     Group,
     InfoOutline,
     InsertChart,
     Launch,
+    List,
     Message,
     MoreVert,
     NotInterested,
@@ -64,6 +73,7 @@ const icons = {
     Public,
     Reply,
     Room,
+    Search,
     ShowChart,
     Star,
     StarBorder,

@@ -24,4 +24,16 @@ describe('Checkbox component', () => {
 
         expect(onChangeSpy).toHaveBeenCalled();
     });
+
+    it('should apply styles and override default styles to the wrapper div when a wrapperStyle prop is defined', () => {
+        const defaultMarginTop = Component.find('div').props().style.marginTop;
+        let customMarginTop = 20;
+        // Ensure the custom value is actually different from the default one
+        if (defaultMarginTop === customMarginTop || defaultMarginTop === `${customMarginTop}px`) {
+            customMarginTop = 40;
+        }
+        const wrapperStyle = { marginTop: customMarginTop };
+        const ComponentWithWrapperStyle = shallow(<Checkbox onChange={onChangeSpy} wrapperStyle={wrapperStyle} />);
+        expect(ComponentWithWrapperStyle.find('div').props().style.marginTop).toBe(customMarginTop);
+    });
 });

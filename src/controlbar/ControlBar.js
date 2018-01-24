@@ -38,11 +38,13 @@ const styles = {
         height: 10,
         cursor: 'ns-resize',
         transition: 'all ease-out 75ms',
-        borderTop: '1px solid rgba(0,0,0,0.3)',
+        // borderTop: '1px solid rgba(0,0,0,0.3)',
     },
 };
-const editModeBackgroundRGB = '255,249,196';
 
+const BACKGROUND_RGB = '255,255,255';
+const BACKGROUND_RGB_EDIT = '255,248,224';
+export const END_FLAP_HEIGHT = 7;
 
 /**
  * The ControlBar component can be used to put an expandable horizontal bar underneath the DHIS header bar, useful for
@@ -82,39 +84,46 @@ class ControlBar extends React.Component {
         window.removeEventListener('mouseup', this.onEndDrag);
     };
 
+    getEndFlapHeight() {
+        return this.showDragHandle() ? END_FLAP_HEIGHT : 0;
+    }
+
     showDragHandle() {
         return typeof this.props.onChangeHeight === 'function';
     }
 
-    endFlapHeight() {
-        return this.showDragHandle() ? 10 : 0;
-    }
-
     renderEndFlap() {
-        const backgroundColor = this.props.editMode ? editModeBackgroundRGB : '255,255,255';
+        const backgroundColor = this.props.editMode ? BACKGROUND_RGB_EDIT : BACKGROUND_RGB;
 
-        const endFlapStyle = Object.assign({},
-            styles.endFlap,
-            { height: this.endFlapHeight() },
+        const endFlapStyle = {
+            ...styles.endFlap,
+            height: this.getEndFlapHeight(),
+            backgroundColor: 'lightblue',
+        };
+
+        const dragFlapStyle = {
+            ...styles.dragHandle,
+            cursor: this.props.expandable ? 'ns-resize' : 'auto',
+            height: this.getEndFlapHeight(),
+            backgroundColor: `rgb(${backgroundColor})`,
+        };
+
+        const props = Object.assign(
+            {},
+            this.showDragHandle() && this.props.expandable ? { onMouseDown: this.onStartDrag } : {},
         );
-
-        const dragFlapStyle = Object.assign({},
-            styles.dragHandle,
-            { height: this.showDragHandle() ? 10 : 0 },
-            { borderTop: this.showDragHandle() ? '1px solid rgba(0,0,0,0.3)' : '0px solid transparent' },
-            { backgroundColor: `rgb(${backgroundColor})` },
-        );
-
-        const props = Object.assign({}, this.showDragHandle() ? { onMouseDown: this.onStartDrag } : {});
 
         // Disable jsx-a11y no-role rule, because what's the alternative?
         /* eslint-disable jsx-a11y/no-static-element-interactions */
         return (
-            <div style={endFlapStyle}>
+            <div className="d2-ui-control-bar-endflap" style={endFlapStyle}>
                 <div
+                    className="d2-ui-control-bar-dragflap"
                     style={dragFlapStyle}
                     {...props}
-                ><SvgIcon icon={'DragHandle'} style={{ marginTop: -7, fill: 'rgba(0,0,0,0.3)' }} /></div>
+                >
+                    <SvgIcon className="d2-ui-control-bar-dragflap-icon" icon={'DragHandle'} style={{ marginTop: -7, fill: 'rgba(0,0,0,0.3)' }} />
+                </div>
             </div>
         );
         /* eslint-enable jsx-a11y/no-static-element-interactions */
@@ -123,7 +132,8 @@ class ControlBar extends React.Component {
     render() {
         const className = createClassName('d2-ui-control-bar', this.props.selector);
         const contentClassName = createClassName('d2-ui-control-bar-contents', this.props.selector);
-        const height = Math.max(this.props.height, 0) + this.endFlapHeight();
+
+        const height = Math.max(this.props.height, 0) + this.getEndFlapHeight();
 
         const rootStyle = Object.assign(
             {},
@@ -131,11 +141,11 @@ class ControlBar extends React.Component {
             // Adjust height to make room for extra components
             { height },
             // Set background color for edit mode
-            { background: this.props.editMode ? `rgb(${editModeBackgroundRGB})` : 'white' },
+            { background: this.props.editMode ? `rgb(${BACKGROUND_RGB_EDIT})` : 'white' },
             // Disable animations while dragging
             this.state.dragging ? { transition: 'none' } : {},
             // Make room for the end flap
-            { paddingBottom: this.endFlapHeight() },
+            { paddingBottom: this.getEndFlapHeight() },
         );
 
         return (
@@ -187,6 +197,11 @@ ControlBar.propTypes = {
      * If set, adds a class to the element in the format d2-ui-control-bar-selector
      */
     selector: PropTypes.string,
+
+    /**
+     * If set, the control bar is vertically expandable by dragging the end flap
+     */
+    expandable: PropTypes.bool,
 };
 
 ControlBar.defaultProps = {
@@ -194,6 +209,7 @@ ControlBar.defaultProps = {
     editMode: false,
     onChangeHeight: null,
     selector: '',
+    expandable: true,
 };
 
 export default ControlBar;
