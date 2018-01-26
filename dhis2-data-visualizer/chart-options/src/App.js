@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-
+import React from 'react';
 import Card from 'material-ui/Card/Card';
 import CardText from 'material-ui/Card/CardText';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -16,22 +15,18 @@ const showSelectedTab = [<DataOptions/>, <AxesOptions />, <StyleOptions />]; //t
  * TODO: Introduce redux & react-router (?), 
  * store/dispatch/subscribe on tab click actions, render options accordingly,
  */
-class App extends Component {
-  state = { currentTabIndex: 0 }
+const App = (props) =>  {
   
-  handleTabClick = (index) => {
-    this.setState({ currentTabIndex: index });
-  }
-
-  render() {
+  //dispatch action, type: show_data_tab, show_axes_tab or show_styles_tab
+    console.log("props is " + props.appState);
     return (
       <div className="chart">
         <MuiThemeProvider>
           <Card>
             <CardText>
               <h3>Chart Options</h3>
-              <ChartTabs handleTabClick={this.handleTabClick}/> 
-              {showSelectedTab[this.state.currentTabIndex]}
+              <ChartTabs /> 
+              {showSelectedTab[props.appState]}
               <GeneralOptions />          
             </CardText>
           </Card>
@@ -39,6 +34,5 @@ class App extends Component {
       </div>
     );
   }
-}
 
 export default App;

@@ -9,15 +9,11 @@ import './index.css';
 /**
 * TODO
 */
-const listSelectFields = () => {
-
-}
+//const listSelectFields = () => {}
 /**
  * input: value from Menu items to update the selectfield with
  */
-const changeAlternative= (newValue) => {
-    console.log(newValue);
-}
+const changeAlternative= (newValue) => { console.log(newValue); }
 
 /** 
  *      
@@ -28,7 +24,8 @@ const DataOptions = (props) =>  {
      * TODO: map SelectFields and wrap some of them in divs,
      * Assign correct strings and styles based on hardcoded ids (?)
      */ 
-     const filterArr = [ <SelectField {...props}/>, <Checkbox {...props}/>];
+    
+    // const filterArr = [ <SelectField {...props}/>, <Checkbox {...props}/>];
 
     return (
         <div>
