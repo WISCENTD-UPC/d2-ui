@@ -1,13 +1,10 @@
 //Temporary files for Strings/placeholders
 
 export const strings = {
-    checkbox: {
-        values: 'Show Values',
-        stacked: 'Use 100% Stacked values',
-        cumulative: 'Use cumulative values',
-        events: 'Include only completed events',
-        style: 'No space between columns/bars',
+    general: {
         hideLegend: 'Hide chart legend', 
+        hideChartTitle: 'Hide chart title',
+        hideSubtitle: 'Hide chart subtitle',
     },
     tabs: {
         dataLabel:'Data',
@@ -15,12 +12,24 @@ export const strings = {
         stylesLabel:'Styles',
     },
     data: {
-        placeholder: 'Hide empty categories',
-        trendLine: 'Trend line',
-        targetValue: 'Target line value',
-        targetTitle: 'Target line title',
-        baseValue: 'Base line value',
-        baseTitle: 'Base line title',  
+        values: 'Show Values',
+        stacked: 'Use 100% Stacked values',
+        cumulative: 'Use cumulative values',
+        targetLineValue: 'Target line value',
+        targetLineTitle: 'Target line title',
+        baseLineValue: 'Base line value',
+        baseLineTitle: 'Base line title',  
+
+        hideEmptyCategories: {
+            defaultValue: 'Hide empty categories',
+            alternatives: [
+                'None', 'Before first', 
+                'After last', 'Before first and after last', 'All']
+        },
+        trendLine: {
+            defaultValue: 'Trend line',
+            alternatives: ['None', 'Linear', 'Polynomial', 'Loess']
+        },    
         sortOrder: {
             defaultValue: 'Sort order',
             alternatives: ['None', 'Low to high', 'High to low']
@@ -28,13 +37,23 @@ export const strings = {
         aggregation: {
             defaultValue: 'Aggregation type',
             alternatives: [ 
-        'By data element', 
-        'Count', 'Average',
-        'Average (sum in org unit hierarchy)',
-        'Sum', 'Standard deviation', 'Variance',
-        'Min', 'Max', 'Last Value', 'Last value (average in org unit hierarchy)'],
-        }
-
-    },    
-    chartTitle: 'Chart Options', 
+                'By data element', 
+                'Count', 'Average',
+                'Average (sum in org unit hierarchy)',
+                'Sum', 'Standard deviation', 'Variance',
+                'Min', 'Max', 'Last Value', 'Last value (average in org unit hierarchy)'],
+            }  
+        },
+    axes: {
+        min: 'Range axis min',
+        max: 'Range axis max',
+        tickSteps:  'Range axis tick step',
+        decimals: 'Range axis decimals',
+        rangeTitle: 'Range axis title',
+        domainTitle: 'Domain axis title',
+    },
+    chart: {
+        noSpace:'No space between columns/bars',
+        chartTitle: 'Chart Options', 
+    }   
 }

@@ -8,9 +8,7 @@ import { strings } from './utils';
 const StyleOptions = () => {
     return (
         <div>
-            <Checkbox label={strings.checkbox.values}/>
-            <Checkbox label={strings.checkbox.stacked}/>
-            <Checkbox label={strings.checkbox.cumulative}/>           
+            <Checkbox label={strings.chart.noSpace}/>           
         </div>
     );
 }

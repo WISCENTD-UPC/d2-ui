@@ -1,6 +1,7 @@
 import React from 'react';
 import Checkbox from 'material-ui/Checkbox';
 import SelectField from 'd2-ui/lib/select-field/SelectField';
+import TextField from 'd2-ui/lib/text-field/TextField';
 import MenuItem from 'material-ui/MenuItem';
 import { strings } from './utils';
 import './index.css'; 
@@ -31,27 +32,41 @@ const DataOptions = (props) =>  {
 
     return (
         <div>
-            <Checkbox label={strings.checkbox.values}/>
-            <Checkbox label={strings.checkbox.stacked}/>
-            <Checkbox label={strings.checkbox.cumulative}/>
-            <div>
-                <SelectField label={strings.data.placeholder}/>
-            </div>
-            <div>
-                <SelectField label={strings.data.trendLine}/>
-            </div>
+            <Checkbox label={strings.data.values}/>
+            <Checkbox label={strings.data.stacked}/>
+            <Checkbox label={strings.data.cumulative}/>         
+            <SelectField
+                label={strings.data.hideEmptyCategories.defaultValue}
+                onChange={(event) => { changeAlternative(event) }}
+            >                            
+                {strings.data.hideEmptyCategories.alternatives.map((alternative, id) => {
+                    return(<MenuItem key={id} value={alternative} primaryText={alternative}/>)
+                })}
+            </ SelectField>
             <div>
                 <SelectField
-                    className="lineValue"
-                    label={strings.data.targetValue}
-                />
-                <SelectField label={strings.data.targetTitle}/>
+                    label={strings.data.trendLine.defaultValue}
+                    onChange={(event) => { changeAlternative(event) }}
+                >                            
+                    {strings.data.trendLine.alternatives.map((alternative, id) => {
+                        return(<MenuItem key={id} value={alternative} primaryText={alternative}/>)
+                    })}
+                </ SelectField>
+            </div>
+                <TextField 
+                    label={strings.data.targetLineValue}
+                    type={'number'}
+                />                        
+                <TextField label={strings.data.targetLineTitle}/>
+            <div>
+                <TextField 
+                    label={strings.data.baseLineValue}
+                    type={'number'}
+                />                        
+                <TextField label={strings.data.baseLineTitle}/>
             </div>
             <div>
-                <SelectField label={strings.data.baseValue}/>
-                <SelectField label={strings.data.baseTitle}/>
-            </div>
-                <SelectField
+            <SelectField
                     label={strings.data.sortOrder.defaultValue}
                     onChange={(event) => { changeAlternative(event) }}
                 >                            
@@ -59,13 +74,6 @@ const DataOptions = (props) =>  {
                         return(<MenuItem key={id} value={alternative} primaryText={alternative}/>)
                     })}
                 </ SelectField>
-            <div>
-                <SelectField 
-                    label={strings.data.aggregation.defaultValue}
-                    items={strings.data.aggregation.alternatives.map((alternative, id) => {
-                        return({id, alternative})
-                    })}        
-                />
             </div>
         </div>
     );

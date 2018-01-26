@@ -1,20 +1,59 @@
-import React from 'react';
-import SelectField from 'd2-ui/lib/select-field/SelectField';
+import React, { Component } from 'react';
+import TextField from 'd2-ui/lib/text-field/TextField';
 import { strings } from './utils';
 
 /**
  * TODO: Fix redux with tab switching and value changes in DataOptions first
  */
-const AxesOptions = () => {
-    return (
-        <div>
-            <SelectField label={strings.data.placeholder}/>
-            <SelectField label={strings.data.placeholder}/>
-            <SelectField label={strings.data.placeholder}/>
-            <SelectField label={strings.data.placeholder}/>
-            <SelectField label={strings.data.placeholder}/>
+class AxesOptions extends Component {
+    state = { testValue: strings.axes.min };
+    
+    //Floating labeltextFixed 
+    handleChange = (newValue) => {
+        this.setState({
+            testValue: newValue
+        });
+    }
+    render() {
+        return (
+            <div>
+            <div>
+                <TextField 
+                    label={this.state.testValue}
+                    type={'number'}
+                    onChange={this.handleChange}
+                    floatingLabelFixed={true}
+                    />
+                <TextField 
+                    label={strings.axes.max}
+                    type={'number'}
+                    /> 
+            </div>
+            <div>
+                <TextField 
+                    label={strings.axes.tickSteps}
+                    type={'number'}
+                /> 
+            </div>
+            <div>
+                <TextField 
+                    label={strings.axes.decimals}
+                    type={'number'}
+                /> 
+            </div>
+                <TextField 
+                    label={strings.axes.rangeTitle}
+                    fullWidth={true}
+                /> 
+            <div>
+                <TextField 
+                    label={strings.axes.domainTitle}
+                    fullWidth={true}
+                /> 
+            </div>
         </div>
-    );
+        );
+    }
 }
 
 export default AxesOptions;

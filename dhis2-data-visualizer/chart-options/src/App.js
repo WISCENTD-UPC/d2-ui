@@ -7,9 +7,10 @@ import ChartTabs from './ChartTabs';
 import DataOptions from './DataOptions';
 import StyleOptions from './StyleOptions';
 import AxesOptions from './AxesOptions';
+import GeneralOptions from './GeneralOptions';
 import './index.css';
 
-let showSelectedTab = [<DataOptions/>, <AxesOptions />, <StyleOptions />]; //temporary variabel, deciding which tab is showing.
+const showSelectedTab = [<DataOptions/>, <AxesOptions />, <StyleOptions />]; //temporary variabel, deciding which tab is showing.
 
 /**
  * TODO: Introduce redux & react-router (?), 
@@ -28,9 +29,10 @@ class App extends Component {
         <MuiThemeProvider>
           <Card>
             <CardText>
-              <h3>Chart Options</h3>                 
+              <h3>Chart Options</h3>
               <ChartTabs handleTabClick={this.handleTabClick}/> 
               {showSelectedTab[this.state.currentTabIndex]}
+              <GeneralOptions />          
             </CardText>
           </Card>
         </MuiThemeProvider>
