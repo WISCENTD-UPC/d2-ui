@@ -55,5 +55,6 @@ export const strings = {
     chart: {
         noSpace:'No space between columns/bars',
         chartTitle: 'Chart Options', 
-    }   
+    }
+
 }

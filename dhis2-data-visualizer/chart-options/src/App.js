@@ -12,13 +12,9 @@ import './index.css';
 const showSelectedTab = [<DataOptions/>, <AxesOptions />, <StyleOptions />]; //temporary variabel, deciding which tab is showing.
 
 /**
- * TODO: Introduce redux & react-router (?), 
- * store/dispatch/subscribe on tab click actions, render options accordingly,
+ * TODO: Update the "redux solution" with a state tree
  */
 const App = (props) =>  {
-  
-  //dispatch action, type: show_data_tab, show_axes_tab or show_styles_tab
-    console.log("props is " + props.appState);
     return (
       <div className="chart">
         <MuiThemeProvider>
@@ -26,7 +22,7 @@ const App = (props) =>  {
             <CardText>
               <h3>Chart Options</h3>
               <ChartTabs /> 
-              {showSelectedTab[props.appState]}
+              {showSelectedTab[props.appState.currentTab]}
               <GeneralOptions />          
             </CardText>
           </Card>

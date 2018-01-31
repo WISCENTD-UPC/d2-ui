@@ -19,10 +19,10 @@ class AxesOptions extends Component {
             <div>
             <div>
                 <TextField 
-                    label={this.state.testValue}
+                    label={strings.axes.min}
+                    value={this.state.testValue}
                     type={'number'}
                     onChange={this.handleChange}
-                    floatingLabelFixed={true}
                     />
                 <TextField 
                     label={strings.axes.max}
@@ -44,6 +44,7 @@ class AxesOptions extends Component {
                 <TextField 
                     label={strings.axes.rangeTitle}
                     fullWidth={true}
+                    placeholder={"test"}
                 /> 
             <div>
                 <TextField 

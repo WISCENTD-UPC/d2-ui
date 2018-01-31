@@ -13,11 +13,11 @@ class ChartTabs extends Component {
     //dispatch action (show data tab,  show axes tab, show styles tab)
     handleChange = index => () => {
         if ( index === 0 ) {
-            store.dispatch({ type: actionTypes.SHOW_DATA_TAB, id: 0});
+            store.dispatch({ type: actionTypes.TOGGLE_TAB, id: 0, name: 'Data'});
           } else if ( index === 1 ){
-            store.dispatch({ type: actionTypes.SHOW_AXES_TAB, id: 1 });
+            store.dispatch({ type: actionTypes.TOGGLE_TAB, id: 1, name: 'Axes'});
           } else if ( index === 2 ) {
-            store.dispatch({ type: actionTypes.SHOW_STYLES_TAB, id: 2 }); 
+            store.dispatch({ type: actionTypes.TOGGLE_TAB, id: 2, name: 'Styles'});
           }
     }
     render() {

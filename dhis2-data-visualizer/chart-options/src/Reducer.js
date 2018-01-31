@@ -1,33 +1,51 @@
 import * as actionTypes from './ActionTypes';
 import { expect } from 'chai';
+import  deepFreeze from 'deep-freeze';
 
+//TODO: Default state til alle tabs
 const initialState = {
-    tabIndex: 0,
+    currentTab: 0,
+    tabContents: [
+        {
+            id:0,
+            name: 'Data',
+        }
+    ]
 }
+
+const testobj = {id: 5, name: 'test', tabToggled: true};
 
 export function chartReducer(state = initialState, action) {
     switch (action.type) {
-        case actionTypes.SHOW_DATA_TAB:    
-            return 0;
-        case actionTypes.SHOW_AXES_TAB: 
-            return 1;
-        case actionTypes.SHOW_STYLES_TAB: 
-            return 2;
+        case actionTypes.TOGGLE_TAB:
+            let newArr = 
+            state.currentTab = action.id;
+            return {
+                ...state,
+                tabContents: updateTab(state.tabContents, action)
+            };
         default:
             return state;
-    };
+    }
+};
+const updateTab = (arr, action) => {
+    if (typeof arr === "undefined" || arr.length === 0){
+        return [...arr, {id:action.id, name:action.name, tabToggled: true}]
+    }
+    if (!exist(arr, action.name)) {
+        return [...arr, {id:action.id, name: action.name, tabToggled: true}]
+    }
+    return arr;
 }
 
-expect(
-    chartReducer(0, {type: actionTypes.SHOW_DATA_TAB})
-).equal(0);
-
-expect(
-    chartReducer(0, {type: actionTypes.SHOW_AXES_TAB})
-).equal(1);
-
-expect(
-    chartReducer(0, {type: actionTypes.SHOW_STYLES_TAB})
-).equal(2);
+const exist = (arr, name) => {
+    let retval = false;
+    arr.forEach(input => {
+        if (input.name === name) {
+            retval = true;
+        }
+    })
+    return retval;
+}
 
 export default chartReducer;
