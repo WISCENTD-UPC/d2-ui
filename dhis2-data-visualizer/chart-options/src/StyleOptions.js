@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkbox from 'material-ui/Checkbox';
+import Checkbox from 'material-ui-next/Checkbox';
 import { strings } from './utils';
 
 /**

@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import Card from 'material-ui/Card/Card';
-import CardText from 'material-ui/Card/CardText';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Card, { CardContent } from 'material-ui-next/Card';
+import { MuiThemeProvider } from 'material-ui/styles';
 import ChartTabs from './ChartTabs';
 import DataOptions from './DataOptions';
 import StyleOptions from './StyleOptions';
 import AxesOptions from './AxesOptions';
 import GeneralOptions from './GeneralOptions';
-import './index.css';
 import { store } from './Store';
 import * as actionTypes from './ActionTypes';
+import './index.css';
 
 
 /**
@@ -31,7 +30,7 @@ class App extends Component  {
         handleSelectChange={this.handleSelectChange} 
         tabContents={this.props.appState.tabContents}/>, 
       <AxesOptions />, 
-      <StyleOptions />
+    <StyleOptions />
     ]
     return tabs[tabIndex];
   }
@@ -39,14 +38,14 @@ class App extends Component  {
   render = () => {   
     return (
       <div className="chart">
-        <MuiThemeProvider>
+        <MuiThemeProvider >
           <Card>
-            <CardText>
+            <CardContent>
               <h3>Chart Options</h3>
               <ChartTabs /> 
                 {this.showSelectedTab(this.props.appState.currentTab)}
               <GeneralOptions />          
-            </CardText>
+            </CardContent>
           </Card>
         </MuiThemeProvider>
       </div>

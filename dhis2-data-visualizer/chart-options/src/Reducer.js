@@ -4,23 +4,34 @@ import * as actionTypes from './ActionTypes';
 
 const initialState = {
     currentTab: 0,
-    tabContents: []
+    tabContents: [ //prøvde med initialState som empty array, results in undefined (se i DataOptions)
+        {
+            category: '',
+            //
+            trendline: '',
+            targetLineValue: '',
+            targetLineTitle: '',
+            baseLineValue: '',
+            baseLineTitle: '',
+            sortorder: '',
+            showValues: ''
+        }
+    ]
 }
 
 export function chartReducer(state = initialState, action) {
     switch (action.type) {
         case actionTypes.TOGGLE_TAB:
-            state.currentTab = action.id;
-            return state;
+            return {...state, currentTab: action.id};
         case actionTypes.TOGGLE_SELECTFIELD:
-            return {...state,tabContents: [updateContent(state, action)]};
+            return {...state,tabContents: [updateTabContent(state, action)]};
         default:
             return state;
     }
 };
 
 
-const updateContent = (state, action) => {
+const updateTabContent = (state, action) => {
     if (action.name === "trendline") {
         return{...state.tabContents[state.currentTab],
             trendline: action.value

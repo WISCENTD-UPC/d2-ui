@@ -1,45 +1,70 @@
 import React, { Component } from 'react';
-import Checkbox from 'material-ui/Checkbox';
+import { FormGroup, FormControlLabel } from 'material-ui-next/Form';
+import Checkbox from 'material-ui-next/Checkbox';
 import SelectField from 'd2-ui/lib/select-field/SelectField';
 import TextField from 'd2-ui/lib/text-field/TextField';
-import MenuItem from 'material-ui/MenuItem';
+import { MenuItem } from 'material-ui/Menu';
 import { strings } from './utils';
 import './index.css'; 
 
 
 class DataOptions extends Component  {
 
+    state = { 
+        showValues: false,
+        useCumulative: false,
+        useStacked: false
+    };
     handleCategoryChange = (newValue, fieldName) => {
         this.props.handleSelectChange(newValue, fieldName);
     }
+    handleCheckBoxClick = name => event =>  {
+        this.setState({ [name] : event.target.checked });
+    }
 
     render = () =>  {
-        let output;
-        if (this.props.tabContents.length === 0) {
-            output = "Temp";
-        } else {
-            output = this.props.tabContents[0].category;            //howTo print the objects props on firstTime render / tabContents.keys = null
-            //console.log(Object.keys(this.props.tabContents[0]));
-        }
         return (
             <div>
-                <Checkbox label={strings.data.values}/>
-                <Checkbox label={strings.data.stacked}/>
-                <Checkbox label={strings.data.cumulative}/>         
+                <FormGroup>
+                    <FormControlLabel
+                        label={strings.data.values}
+                        control={
+                            <Checkbox 
+                                checked={this.state.showValues}
+                                onChange={this.handleCheckBoxClick("showValues")}
+                            />}
+                    />
+                    <FormControlLabel
+                        label={strings.data.cumulative}
+                        control={
+                            <Checkbox 
+                                checked={this.state.useCumulative}
+                                onChange={this.handleCheckBoxClick("useCumulative")}
+                            />}
+                    />
+                    <FormControlLabel
+                        label={strings.data.stacked}
+                        control={
+                            <Checkbox 
+                                checked={this.state.useStacked}
+                                onChange={this.handleCheckBoxClick("useStacked")}
+                            />}
+                    />
+                </FormGroup>     
                 <SelectField
-                    label={strings.data.hideEmptyCategories.defaultValue}
-                    value={output}
-                    onChange={(event) => this.handleCategoryChange(event, "category")}
-                >                            
-                    {strings.data.hideEmptyCategories.alternatives.map((alternative, id) => {
-                        return(<MenuItem key={id} value={alternative} primaryText={alternative}/>)
-                    })}
-                </ SelectField>
+                        label={strings.data.hideEmptyCategories.defaultValue}
+                        onChange={(event) => { this.handleCategoryChange(event, "category")}}
+                        value={this.props.tabContents[0].category}
+                    >                            
+                        {strings.data.hideEmptyCategories.alternatives.map((alternative, id) => {
+                            return(<MenuItem key={id} value={alternative} primaryText={alternative}/>)
+                        })}
+                    </ SelectField>             
                 <div>
-                    <SelectField
+                <SelectField
                         label={strings.data.trendLine.defaultValue}
-                        value={this.props.trendVal}
                         onChange={(event) => { this.handleCategoryChange(event, "trendline")}}
+                        value={this.props.tabContents[0].trendline}
                     >                            
                         {strings.data.trendLine.alternatives.map((alternative, id) => {
                             return(<MenuItem key={id} value={alternative} primaryText={alternative}/>)
@@ -48,28 +73,33 @@ class DataOptions extends Component  {
                 </div>
                     <TextField 
                         label={strings.data.targetLineValue}
-                        onChange={(event) => { this.handleCategoryChange(event, "targetLineValue")}}
+                        value={this.props.tabContents[0].targetLineValue}
+                        onChange={(event) => {this.handleCategoryChange(event, "targetLineValue")}}
                         type={'number'}
                         />                        
                     <TextField 
                         label={strings.data.targetLineTitle}
-                        onChange={(event) => { this.handleCategoryChange(event, "targetLineTitle")}}
+                        value={this.props.tabContents[0].targetLineTitle}
+                        onChange={(event) => {this.handleCategoryChange(event, "targetLineTitle")}}
                     />
                 <div>
                 <TextField 
                     label={strings.data.baseLineValue}
+                    value={this.props.tabContents[0].baseLineValue}
                     type={'number'}
-                    onChange={(event) => { this.handleCategoryChange(event, "baseLineValue")}}
+                    onChange={(event) => {this.handleCategoryChange(event, "baseLineValue")}}
                 />                        
                 <TextField 
                     label={strings.data.baseLineTitle}
-                    onChange={(event) => { this.handleCategoryChange(event, "baseLineTitle")}}
+                    value={this.props.tabContents[0].baseLineTitle}
+                    onChange={(event) => {this.handleCategoryChange(event, "baseLineTitle")}}
                 />
                 </div>
                 <div>
                     <SelectField
                         label={strings.data.sortOrder.defaultValue}
                         onChange={(event) => { this.handleCategoryChange(event, "sortorder")}}
+                        value={this.props.tabContents[0].sortorder}
                     >                            
                         {strings.data.aggregation.alternatives.map((alternative, id) => {
                             return(<MenuItem key={id} value={alternative} primaryText={alternative}/>)
@@ -82,3 +112,31 @@ class DataOptions extends Component  {
 }
 
 export default DataOptions;
+
+/**
+ *  Does not work, AFAIK state: hasValue does not update
+ * 
+ *                 <SelectField
+                    label={strings.data.hideEmptyCategories.defaultValue}
+                    value={this.props.tabContents[0].category}
+                    onChange={(event) => this.handleCategoryChange(event.name, "category")}
+                    items={strings.data.hideEmptyCategories.alternatives.map((alternative, id) => {
+                        return {key: id, name: alternative}
+                    })}
+ * 
+ */
+
+ /*
+*   Works, hasValue state updates and value changes correctly.
+
+                    <SelectField
+                        label={strings.data.sortOrder.defaultValue}
+                        onChange={(event) => { this.handleCategoryChange(event, "sortorder")}}
+                        value={this.props.tabContents[0].sortorder}
+                    >                            
+                        {strings.data.aggregation.alternatives.map((alternative, id) => {
+                            return(<MenuItem key={id} value={alternative} primaryText={alternative}/>)
+                        })}
+                    </ SelectField>
+*
+*/
