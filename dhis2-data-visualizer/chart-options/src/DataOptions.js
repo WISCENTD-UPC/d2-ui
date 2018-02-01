@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Checkbox from 'material-ui/Checkbox';
 import SelectField from 'd2-ui/lib/select-field/SelectField';
 import TextField from 'd2-ui/lib/text-field/TextField';
@@ -6,75 +6,79 @@ import MenuItem from 'material-ui/MenuItem';
 import { strings } from './utils';
 import './index.css'; 
 
-/**
-* TODO
-*/
-//const listSelectFields = () => {}
-/**
- * input: value from Menu items to update the selectfield with
- */
-const changeAlternative= (newValue) => { console.log(newValue); }
 
-/** 
- *      
- * @param {*} props  not receiving any props as of yet (work in progress)
- */
-const DataOptions = (props) =>  {
-    /**
-     * TODO: map SelectFields and wrap some of them in divs,
-     * Assign correct strings and styles based on hardcoded ids (?)
-     */ 
-    
-    // const filterArr = [ <SelectField {...props}/>, <Checkbox {...props}/>];
+class DataOptions extends Component  {
 
-    return (
-        <div>
-            <Checkbox label={strings.data.values}/>
-            <Checkbox label={strings.data.stacked}/>
-            <Checkbox label={strings.data.cumulative}/>         
-            <SelectField
-                label={strings.data.hideEmptyCategories.defaultValue}
-                onChange={(event) => { changeAlternative(event) }}
-            >                            
-                {strings.data.hideEmptyCategories.alternatives.map((alternative, id) => {
-                    return(<MenuItem key={id} value={alternative} primaryText={alternative}/>)
-                })}
-            </ SelectField>
+    handleCategoryChange = (newValue, fieldName) => {
+        this.props.handleSelectChange(newValue, fieldName);
+    }
+
+    render = () =>  {
+        let output;
+        if (this.props.tabContents.length === 0) {
+            output = "Temp";
+        } else {
+            output = this.props.tabContents[0].category;            //howTo print the objects props on firstTime render / tabContents.keys = null
+            //console.log(Object.keys(this.props.tabContents[0]));
+        }
+        return (
             <div>
+                <Checkbox label={strings.data.values}/>
+                <Checkbox label={strings.data.stacked}/>
+                <Checkbox label={strings.data.cumulative}/>         
                 <SelectField
-                    label={strings.data.trendLine.defaultValue}
-                    onChange={(event) => { changeAlternative(event) }}
+                    label={strings.data.hideEmptyCategories.defaultValue}
+                    value={output}
+                    onChange={(event) => this.handleCategoryChange(event, "category")}
                 >                            
-                    {strings.data.trendLine.alternatives.map((alternative, id) => {
+                    {strings.data.hideEmptyCategories.alternatives.map((alternative, id) => {
                         return(<MenuItem key={id} value={alternative} primaryText={alternative}/>)
                     })}
                 </ SelectField>
-            </div>
-                <TextField 
-                    label={strings.data.targetLineValue}
-                    type={'number'}
-                />                        
-                <TextField label={strings.data.targetLineTitle}/>
-            <div>
+                <div>
+                    <SelectField
+                        label={strings.data.trendLine.defaultValue}
+                        value={this.props.trendVal}
+                        onChange={(event) => { this.handleCategoryChange(event, "trendline")}}
+                    >                            
+                        {strings.data.trendLine.alternatives.map((alternative, id) => {
+                            return(<MenuItem key={id} value={alternative} primaryText={alternative}/>)
+                        })}
+                    </ SelectField>
+                </div>
+                    <TextField 
+                        label={strings.data.targetLineValue}
+                        onChange={(event) => { this.handleCategoryChange(event, "targetLineValue")}}
+                        type={'number'}
+                        />                        
+                    <TextField 
+                        label={strings.data.targetLineTitle}
+                        onChange={(event) => { this.handleCategoryChange(event, "targetLineTitle")}}
+                    />
+                <div>
                 <TextField 
                     label={strings.data.baseLineValue}
                     type={'number'}
+                    onChange={(event) => { this.handleCategoryChange(event, "baseLineValue")}}
                 />                        
-                <TextField label={strings.data.baseLineTitle}/>
+                <TextField 
+                    label={strings.data.baseLineTitle}
+                    onChange={(event) => { this.handleCategoryChange(event, "baseLineTitle")}}
+                />
+                </div>
+                <div>
+                    <SelectField
+                        label={strings.data.sortOrder.defaultValue}
+                        onChange={(event) => { this.handleCategoryChange(event, "sortorder")}}
+                    >                            
+                        {strings.data.aggregation.alternatives.map((alternative, id) => {
+                            return(<MenuItem key={id} value={alternative} primaryText={alternative}/>)
+                        })}
+                    </ SelectField>
+                </div>
             </div>
-            <div>
-            <SelectField
-                    label={strings.data.sortOrder.defaultValue}
-                    onChange={(event) => { changeAlternative(event) }}
-                >                            
-                    {strings.data.aggregation.alternatives.map((alternative, id) => {
-                        return(<MenuItem key={id} value={alternative} primaryText={alternative}/>)
-                    })}
-                </ SelectField>
-            </div>
-        </div>
-    );
+        );
+    }
 }
-
 
 export default DataOptions;

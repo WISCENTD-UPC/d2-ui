@@ -11,16 +11,26 @@ class ChartTabs extends Component {
 
     //?? ref scheduler app, content.jsx (handlefieldchange)
     //dispatch action (show data tab,  show axes tab, show styles tab)
-    handleChange = index => () => {
-        if ( index === 0 ) {
-            store.dispatch({ type: actionTypes.TOGGLE_TAB, id: 0, name: 'Data'});
-          } else if ( index === 1 ){
-            store.dispatch({ type: actionTypes.TOGGLE_TAB, id: 1, name: 'Axes'});
-          } else if ( index === 2 ) {
-            store.dispatch({ type: actionTypes.TOGGLE_TAB, id: 2, name: 'Styles'});
+    handleChange = tabID => () => {
+        if ( tabID === 0 ) {
+            store.dispatch({ 
+                type: actionTypes.TOGGLE_TAB, 
+                id: tabID, 
+            });
+          } else if ( tabID === 1 ){
+            store.dispatch({ 
+                type: actionTypes.TOGGLE_TAB, 
+                id: tabID
+            });
+          } else if ( tabID === 2 ) {
+            store.dispatch({ 
+                type: actionTypes.TOGGLE_TAB, 
+                id: tabID
+            });
           }
     }
-    render() {
+
+    render = () => {
         return (
             <div>
                 <Tabs>

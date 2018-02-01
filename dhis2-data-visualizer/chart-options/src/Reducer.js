@@ -1,51 +1,62 @@
 import * as actionTypes from './ActionTypes';
-import { expect } from 'chai';
-import  deepFreeze from 'deep-freeze';
+//import { expect } from 'chai';
+//import  deepFreeze from 'deep-freeze';
 
-//TODO: Default state til alle tabs
 const initialState = {
     currentTab: 0,
-    tabContents: [
-        {
-            id:0,
-            name: 'Data',
-        }
-    ]
+    tabContents: []
 }
-
-const testobj = {id: 5, name: 'test', tabToggled: true};
 
 export function chartReducer(state = initialState, action) {
     switch (action.type) {
         case actionTypes.TOGGLE_TAB:
-            let newArr = 
             state.currentTab = action.id;
-            return {
-                ...state,
-                tabContents: updateTab(state.tabContents, action)
-            };
+            return state;
+        case actionTypes.TOGGLE_SELECTFIELD:
+            return {...state,tabContents: [updateContent(state, action)]};
         default:
             return state;
     }
 };
-const updateTab = (arr, action) => {
-    if (typeof arr === "undefined" || arr.length === 0){
-        return [...arr, {id:action.id, name:action.name, tabToggled: true}]
+
+
+const updateContent = (state, action) => {
+    if (action.name === "trendline") {
+        return{...state.tabContents[state.currentTab],
+            trendline: action.value
+        }   
     }
-    if (!exist(arr, action.name)) {
-        return [...arr, {id:action.id, name: action.name, tabToggled: true}]
+    if (action.name === "category") {
+        return{...state.tabContents[state.currentTab],
+            category: action.value
+        }   
     }
-    return arr;
+    if (action.name === "targetLineValue") {
+        return{...state.tabContents[state.currentTab],
+            targetLineValue: action.value
+        };       
+    }
+    if (action.name === "targetLineTitle") {
+        return{...state.tabContents[state.currentTab],
+            targetLineTitle: action.value
+        };       
+    }
+    if (action.name === "baseLineValue") {
+        return{...state.tabContents[state.currentTab],
+            baseLineValue: action.value
+        };       
+    }
+    if (action.name === "baseLineTitle") {
+        return{...state.tabContents[state.currentTab],
+            baseLineTitle: action.value
+        };       
+    }
+    if (action.name === "sortorder") {
+        return{...state.tabContents[state.currentTab],
+            sortorder: action.value
+        };       
+    }
 }
 
-const exist = (arr, name) => {
-    let retval = false;
-    arr.forEach(input => {
-        if (input.name === name) {
-            retval = true;
-        }
-    })
-    return retval;
-}
 
 export default chartReducer;
