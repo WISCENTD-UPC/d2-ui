@@ -49,7 +49,6 @@
     "jest-enzyme": "^3.8.2",
     "lodash": "^4.17.4",
     "loglevel": "^1.5.0",
-    "material-ui": "^0.19.3",
     "node-sass": "^4.5.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
@@ -70,5 +69,10 @@
   "pre-commit": [
     "validate",
     "test"
-  ]
+  ],
+  "dependencies": {
+    "material-ui": "^1.0.0-beta.33",
+    "material-ui-codemod": "^1.0.0-beta.23",
+    "material-ui-icons": "^1.0.0-beta.17"
+  }
 }
