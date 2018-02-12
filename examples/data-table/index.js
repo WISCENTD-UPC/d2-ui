@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 import { render } from 'react-dom';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { blue500, blue700, lightBlack, grey300, grey500, white, darkBlack } from 'material-ui/styles/colors';
+import blue from 'material-ui/colors/blue';
+import common from 'material-ui/colors/common';
+import grey from 'material-ui/colors/grey';
+const blue500 = blue['500'];
+const blue700 = blue['700'];
+const lightBlack = common.lightBlack;
+const grey300 = grey['300'];
+const grey500 = grey['500'];
+const white = common.white;
+const darkBlack = common.darkBlack;
 import { fade } from 'material-ui/utils/colorManipulator';
 import Spacing from 'material-ui/styles/spacing';
 import D2Lib from 'd2/lib/d2';

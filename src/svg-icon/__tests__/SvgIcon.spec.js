@@ -1,7 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import SvgIcon from '../SvgIcon';
-import { grey600, grey200 } from 'material-ui/styles/colors';
+import grey from 'material-ui/colors/grey';
+const grey600 = grey['600'];
+const grey200 = grey['200'];
 
 describe('SvgIcon', () => {
     const icon = props => shallow(<SvgIcon {...props} />);

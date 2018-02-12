@@ -1,4 +1,6 @@
-import { white, black } from 'material-ui/styles/colors';
+import common from 'material-ui/colors/common';
+const white = common.white;
+const black = common.black;
 import { Observable } from 'rxjs';
 import log from 'loglevel';
 import { curry } from 'lodash/fp';

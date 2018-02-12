@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from 'material-ui/Avatar';
-import IconStar from 'material-ui/svg-icons/toggle/star';
+import IconStar from 'material-ui-icons/Star';
 import MuiChip from 'material-ui/Chip';
 import { createClassName } from '../component-helpers/utils';
 
