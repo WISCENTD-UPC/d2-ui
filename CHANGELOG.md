@@ -1,6 +1,15 @@
 
 # D2-UI Changelog
 
+## next
+
+###### _Future_
+
+##### Breaking changes
+
+- Everything
+- Move to Material UI v1
+
 
 ## 28.0.0
 ###### _September 28th 2017_
