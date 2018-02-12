@@ -3,8 +3,6 @@ import { render } from 'react-dom';
 
 import Toggle from 'material-ui/Toggle';
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import Button from '../../src/button/Button';
@@ -174,19 +172,17 @@ function ExampleControls() {
 
 function ControlBarWithLines() {
     return (
-        <MuiThemeProvider muiTheme={getMuiTheme()}>
-            <div>
-                <div style={headerStyles}><div style={{ padding: 16 }}>Placeholder header bar</div></div>
-                <ControlBar
-                    editMode={editMode}
-                    height={height}
-                    onChangeHeight={(dragHandle && heightChangeHandler) || null}
-                >
-                    <Contents />
-                </ControlBar>
-                <ExampleControls />
-            </div>
-        </MuiThemeProvider>
+        <div>
+            <div style={headerStyles}><div style={{ padding: 16 }}>Placeholder header bar</div></div>
+            <ControlBar
+                editMode={editMode}
+                height={height}
+                onChangeHeight={(dragHandle && heightChangeHandler) || null}
+            >
+                <Contents />
+            </ControlBar>
+            <ExampleControls />
+        </div>
     );
 }
 

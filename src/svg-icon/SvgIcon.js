@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Add from 'material-ui-icons/Add';
 import ArrowDownward from 'material-ui-icons/ArrowDownward';
-import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
+import ArrowDropRight from 'material-ui-icons/SubdirectoryArrowRight';
 import ArrowUpward from 'material-ui-icons/ArrowUpward';
 import Business from 'material-ui-icons/Business';
 import Cancel from 'material-ui-icons/Cancel';

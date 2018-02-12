@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { render } from 'react-dom';
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import blue from 'material-ui/colors/blue';
 import common from 'material-ui/colors/common';
 import grey from 'material-ui/colors/grey';
@@ -13,7 +12,7 @@ const grey300 = grey['300'];
 const grey500 = grey['500'];
 const white = common.white;
 const darkBlack = common.darkBlack;
-import { fade } from 'material-ui/utils/colorManipulator';
+import { fade } from 'material-ui/styles/colorManipulator';
 import Spacing from 'material-ui/styles/spacing';
 import D2Lib from 'd2/lib/d2';
 
@@ -42,16 +41,11 @@ const style = {
 
 function renderExamples(d2) {
     class Example extends React.Component {
-        getChildContext() {
-            return { muiTheme: getMuiTheme(style), d2 };
-        }
-
         render() {
             return this.props.children;
         }
     }
     Example.childContextTypes = {
-        muiTheme: PropTypes.object,
         d2: PropTypes.object,
     };
     Example.propTypes = { children: PropTypes.node.isRequired };

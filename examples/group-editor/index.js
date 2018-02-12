@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import ReactDOM from 'react-dom';
 import { Card, CardText } from 'material-ui/Card';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import D2Lib from 'd2/lib/d2';
 import Store from '../../src/store/Store';
@@ -132,7 +130,7 @@ class GroupEditorExample extends React.Component {
 
     render() {
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}><div>
+            <div>
                 <Card style={Object.assign({}, this.styles.card, { width: 250 })}>
                     <CardText style={this.styles.cardText}>
                         <h3 style={this.styles.cardHeader}>Data controls</h3>
@@ -166,7 +164,7 @@ class GroupEditorExample extends React.Component {
                         </div>
                     </CardText>
                 </Card>
-            </div></MuiThemeProvider>
+            </div>
         );
     }
 }

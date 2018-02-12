@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
 import { Card, CardText } from 'material-ui/Card';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import D2Lib from 'd2/lib/d2';
 import PeriodPicker from '../../src/period-picker/PeriodPicker.component';
@@ -62,58 +60,56 @@ class PeriodPickerExample extends React.Component {
         });
 
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <div>
-                    <Card style={styles.card}>
-                        <CardText style={styles.cardText}>
-                            <h3 style={styles.cardHeader}>Props</h3>
-                            <div className="scroll">
-                                <div>
-                                    <select
-                                        value={this.state.periodType}
-                                        onChange={this.changePeriodType}
-                                        style={{ marginBottom: 16 }}
-                                    >
-                                        <option>Daily</option>
-                                        <option>Weekly</option>
-                                        <option>WeeklyWednesday</option>
-                                        <option>WeeklyThursday</option>
-                                        <option>WeeklySaturday</option>
-                                        <option>WeeklySunday</option>
-                                        <option>Monthly</option>
-                                        <option>BiMonthly</option>
-                                        <option>Quarterly</option>
-                                        <option>SixMonthly</option>
-                                        <option>SixMonthlyApril</option>
-                                        <option>Yearly</option>
-                                        <option>FinancialApril</option>
-                                        <option>FinancialJuly</option>
-                                        <option>FinancialOct</option>
-                                        <option value="Invalid">Invalid period type</option>
-                                    </select>
-                                </div>
-                                <ol>
-                                    {this.state.values.map((v, i) => <li key={i}>{parsePeriod(v).id} {parsePeriod(v).name}</li>)}
-                                </ol>
+            <div>
+                <Card style={styles.card}>
+                    <CardText style={styles.cardText}>
+                        <h3 style={styles.cardHeader}>Props</h3>
+                        <div className="scroll">
+                            <div>
+                                <select
+                                    value={this.state.periodType}
+                                    onChange={this.changePeriodType}
+                                    style={{ marginBottom: 16 }}
+                                >
+                                    <option>Daily</option>
+                                    <option>Weekly</option>
+                                    <option>WeeklyWednesday</option>
+                                    <option>WeeklyThursday</option>
+                                    <option>WeeklySaturday</option>
+                                    <option>WeeklySunday</option>
+                                    <option>Monthly</option>
+                                    <option>BiMonthly</option>
+                                    <option>Quarterly</option>
+                                    <option>SixMonthly</option>
+                                    <option>SixMonthlyApril</option>
+                                    <option>Yearly</option>
+                                    <option>FinancialApril</option>
+                                    <option>FinancialJuly</option>
+                                    <option>FinancialOct</option>
+                                    <option value="Invalid">Invalid period type</option>
+                                </select>
                             </div>
-                        </CardText>
-                    </Card>
-                    <Card style={styles.card}>
-                        <CardText style={styles.cardText}>
-                            <h3 style={styles.cardHeader}>Period Picker</h3>
-                            <div className="scroll">
-                                <PeriodPicker
-                                    periodType={this.state.periodType}
-                                    onPickPeriod={(value) => {
-                                        this.setState({ values: this.state.values.concat(value) });
-                                        console.info(`New value: ${value}`);
-                                    }}
-                                />
-                            </div>
-                        </CardText>
-                    </Card>
-                </div>
-            </MuiThemeProvider>
+                            <ol>
+                                {this.state.values.map((v, i) => <li key={i}>{parsePeriod(v).id} {parsePeriod(v).name}</li>)}
+                            </ol>
+                        </div>
+                    </CardText>
+                </Card>
+                <Card style={styles.card}>
+                    <CardText style={styles.cardText}>
+                        <h3 style={styles.cardHeader}>Period Picker</h3>
+                        <div className="scroll">
+                            <PeriodPicker
+                                periodType={this.state.periodType}
+                                onPickPeriod={(value) => {
+                                    this.setState({ values: this.state.values.concat(value) });
+                                    console.info(`New value: ${value}`);
+                                }}
+                            />
+                        </div>
+                    </CardText>
+                </Card>
+            </div>
         );
     }
 }

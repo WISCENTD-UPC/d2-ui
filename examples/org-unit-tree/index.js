@@ -5,8 +5,6 @@ import { render } from 'react-dom';
 import log from 'loglevel';
 import Card from 'material-ui/Card/Card';
 import CardText from 'material-ui/Card/CardText';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import D2Lib from 'd2/lib/d2';
 import OrgUnitTree from '../../src/org-unit-tree/OrgUnitTree.component';
 import OrgUnitTreeMultipleRoots from '../../src/org-unit-tree/OrgUnitTreeMultipleRoots.component';
@@ -55,141 +53,139 @@ function OrgUnitTreeExample(props) {
     });
 
     return (
-        <MuiThemeProvider muiTheme={getMuiTheme()}>
-            <div>
-                <section>Plain Organisation Unit Trees</section>
+        <div>
+            <section>Plain Organisation Unit Trees</section>
 
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Plain OrgUnitTree</h3>
-                        <OrgUnitTree root={props.root} />
-                    </CardText>
-                </Card>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Three Independent Trees</h3>
-                        {props.roots.length > 0 ? (
-                            <div>
-                                <OrgUnitTree root={props.roots[0]} />
-                                <OrgUnitTree root={props.roots[1]} />
-                                <OrgUnitTree root={props.roots[2]} />
-                            </div>
-                        ) : 'Loading...' }
-                    </CardText>
-                </Card>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Tree with multiple roots</h3>
-                        {props.roots.length > 0 ? (
-                            <OrgUnitTreeMultipleRoots roots={props.roots} />
-                        ) : 'Loading...' }
-                    </CardText>
-                </Card>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Custom Styling</h3>
-                        <OrgUnitTree
-                            root={props.root}
-                            labelStyle={styles.customLabel}
-                            selectedLabelStyle={styles.customLabelSelected}
-                            selected={[
-                                '/ImspTQPwCqd/O6uvpzGd5pu',
-                                '/ImspTQPwCqd/lc3eMKXaEfw',
-                                '/ImspTQPwCqd/PMa2VCrupOd',
-                                '/ImspTQPwCqd/qhqAxPSTUXp',
-                                '/ImspTQPwCqd/jmIPBj66vD6',
-                            ]}
-                            arrowSymbol="+"
-                        />
-                    </CardText>
-                </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Plain OrgUnitTree</h3>
+                    <OrgUnitTree root={props.root} />
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Three Independent Trees</h3>
+                    {props.roots.length > 0 ? (
+                        <div>
+                            <OrgUnitTree root={props.roots[0]} />
+                            <OrgUnitTree root={props.roots[1]} />
+                            <OrgUnitTree root={props.roots[2]} />
+                        </div>
+                    ) : 'Loading...' }
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Tree with multiple roots</h3>
+                    {props.roots.length > 0 ? (
+                        <OrgUnitTreeMultipleRoots roots={props.roots} />
+                    ) : 'Loading...' }
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Custom Styling</h3>
+                    <OrgUnitTree
+                        root={props.root}
+                        labelStyle={styles.customLabel}
+                        selectedLabelStyle={styles.customLabelSelected}
+                        selected={[
+                            '/ImspTQPwCqd/O6uvpzGd5pu',
+                            '/ImspTQPwCqd/lc3eMKXaEfw',
+                            '/ImspTQPwCqd/PMa2VCrupOd',
+                            '/ImspTQPwCqd/qhqAxPSTUXp',
+                            '/ImspTQPwCqd/jmIPBj66vD6',
+                        ]}
+                        arrowSymbol="+"
+                    />
+                </CardText>
+            </Card>
 
-                <section>Single Selection</section>
+            <section>Single Selection</section>
 
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Single Selection Tree</h3>
-                        <SingleSelection root={props.root} />
-                    </CardText>
-                </Card>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Single Selection Tree without Checkboxes</h3>
-                        <SingleSelectionNoCheckbox root={props.root} />
-                    </CardText>
-                </Card>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Single Selection with multiple roots</h3>
-                        {props.roots.length > 0 ? (
-                            <SingleSelectionMultipleRoots roots={props.roots} />
-                        ) : 'Loading...' }
-                    </CardText>
-                </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Single Selection Tree</h3>
+                    <SingleSelection root={props.root} />
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Single Selection Tree without Checkboxes</h3>
+                    <SingleSelectionNoCheckbox root={props.root} />
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Single Selection with multiple roots</h3>
+                    {props.roots.length > 0 ? (
+                        <SingleSelectionMultipleRoots roots={props.roots} />
+                    ) : 'Loading...' }
+                </CardText>
+            </Card>
 
-                <section>Multiple Selection</section>
+            <section>Multiple Selection</section>
 
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Multiple Selection Tree</h3>
-                        <MultipleSelection root={props.root} />
-                    </CardText>
-                </Card>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Multiple Selection without Checkboxes</h3>
-                        <MultipleSelectionNoCheckbox root={props.root} />
-                    </CardText>
-                </Card>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Multiple Selection with multiple roots</h3>
-                        {props.roots.length > 0 ? (
-                            <MultipleSelectionMultipleRoots roots={props.roots} />
-                        ) : 'Loading...' }
-                    </CardText>
-                </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Multiple Selection Tree</h3>
+                    <MultipleSelection root={props.root} />
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Multiple Selection without Checkboxes</h3>
+                    <MultipleSelectionNoCheckbox root={props.root} />
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Multiple Selection with multiple roots</h3>
+                    {props.roots.length > 0 ? (
+                        <MultipleSelectionMultipleRoots roots={props.roots} />
+                    ) : 'Loading...' }
+                </CardText>
+            </Card>
 
-                <section>Initially Expanded and Pre-Loaded Trees</section>
+            <section>Initially Expanded and Pre-Loaded Trees</section>
 
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Initially Expanded</h3>
-                        <InitiallyExpanded roots={props.root} />
-                    </CardText>
-                </Card>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Initially Expanded Multiple Roots</h3>
-                        <InitiallyExpanded
-                            roots={props.roots}
-                            selected={['/ImspTQPwCqd', '/ImspTQPwCqd/fdc6uOvgoji']}
-                        />
-                    </CardText>
-                </Card>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Initially Expanded, 3 levels pre-loaded</h3>
-                        { props.preRoot ? <InitiallyExpanded roots={props.preRoot} /> : 'Loading...' }
-                    </CardText>
-                </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Initially Expanded</h3>
+                    <InitiallyExpanded roots={props.root} />
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Initially Expanded Multiple Roots</h3>
+                    <InitiallyExpanded
+                        roots={props.roots}
+                        selected={['/ImspTQPwCqd', '/ImspTQPwCqd/fdc6uOvgoji']}
+                    />
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Initially Expanded, 3 levels pre-loaded</h3>
+                    { props.preRoot ? <InitiallyExpanded roots={props.preRoot} /> : 'Loading...' }
+                </CardText>
+            </Card>
 
-                <section>Root Selection</section>
+            <section>Root Selection</section>
 
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Root Selection</h3>
-                        <ChangeRoot root={props.root} />
-                    </CardText>
-                </Card>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Root Selection & Multiple Selection</h3>
-                        <MultipleSelectionChangeRoot root={props.root} />
-                    </CardText>
-                </Card>
-            </div>
-        </MuiThemeProvider>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Root Selection</h3>
+                    <ChangeRoot root={props.root} />
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Root Selection & Multiple Selection</h3>
+                    <MultipleSelectionChangeRoot root={props.root} />
+                </CardText>
+            </Card>
+        </div>
     );
 }
 OrgUnitTreeExample.propTypes = {

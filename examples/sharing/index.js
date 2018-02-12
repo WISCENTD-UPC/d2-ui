@@ -3,9 +3,7 @@ import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
 import D2Lib from 'd2/lib/d2';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import SharingDialog from '../../src/sharing/SharingDialog.component';
 
@@ -41,21 +39,19 @@ class SharingExample extends React.Component {
     };
 
     render = () => (
-        <MuiThemeProvider muiTheme={getMuiTheme()}>
-            <div style={{ padding: 32 }}>
-                <SharingDialog
-                    open={this.state.open}
-                    id={this.state.id}
-                    type={this.state.type}
-                    onRequestClose={this.handleClose}
-                />
-                { this.props.examples.map(({ type, id }) => (
-                    <div key={type + id} style={{ padding: 16 }}>
-                        <RaisedButton key={type} label={`${type}/${id}`} onClick={this.handleOpen(type, id)} />
-                    </div>
-                ))}
-            </div>
-        </MuiThemeProvider>
+        <div style={{ padding: 32 }}>
+            <SharingDialog
+                open={this.state.open}
+                id={this.state.id}
+                type={this.state.type}
+                onRequestClose={this.handleClose}
+            />
+            { this.props.examples.map(({ type, id }) => (
+                <div key={type + id} style={{ padding: 16 }}>
+                    <RaisedButton key={type} label={`${type}/${id}`} onClick={this.handleOpen(type, id)} />
+                </div>
+            ))}
+        </div>
     );
 }
 

@@ -4,8 +4,6 @@ import { render } from 'react-dom';
 import log from 'loglevel';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Card from 'material-ui/Card/Card';
 import CardText from 'material-ui/Card/CardText';
@@ -172,8 +170,6 @@ FormExample.childContextTypes = {
 };
 
 render(
-    <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <FormExample />
-    </MuiThemeProvider>,
+    <FormExample />,
     document.querySelector('#form-builder'),
 );
