@@ -1,9 +1,10 @@
 {
   "name": "d2-ui",
-  "version": "next",
+  "version": "v1-beta.1",
   "description": "d2-ui",
   "main": "index.js",
   "license": "BSD-3-Clause",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/dhis2/d2-ui.git"
@@ -11,5 +12,19 @@
   "dependencies": {
     "material-ui": "^1.0.0-beta.33",
     "material-ui-icons": "^1.0.0-beta.17"
+  },
+  "devDependencies": {
+    "ast-types": "^0.10.2",
+    "fs-extra": "^5.0.0",
+    "recast": "^0.13.1",
+    "rimraf": "^2.6.2"
+  },
+  "peerDependencies": {
+    "react": "^15.3.0 || ^16.0.0",
+    "react-dom": "^15.3.0 || ^16.0.0"
+  },
+  "scripts": {
+    "prebuild": "rimraf ./build",
+    "build": "node ./scripts/wrap-material-ui.js && node ./scripts/copy-files.js"
   }
 }

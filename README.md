@@ -15,16 +15,16 @@ docs](https://github.com/mui-org/material-ui#should-i-start-with-v1-beta)
 - Use any components available in Material UI v1:
   https://github.com/mui-org/material-ui/tree/v1-beta/src
 
-- Standalone, installable components with D2 and D2-UI:
+- Standalone, installable components with its own dependency tree (e.g. D2-UI & D2)
     
     `yarn add dhis2-app-header`
 
 - Simple imports:
 
-    * Material UI: `import { Button } from 'material-ui/Button'`
     * D2-UI: `import { Button } from 'd2-ui/Button'`
     * Standalone: `import { AppHeader } from 'dhis2-app-header'`
 
 - Future flexibility:
 
     Want to use `redux-forms` or whatever comes next? Go ahead!
+
