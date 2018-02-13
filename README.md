@@ -73,6 +73,8 @@ Another script, `scripts/copy-files.js` is run which copies a set of files from 
     * Simple components: Whatever components we passthrough to Material UI
     * Complex components: Built from multiple simple components; can be deployed as standalone packages, may introduce other dependencies, may get external data, etc.
     * Style: Provides a DHIS2 skin as the default skin
+   
+- Porting relevant `d2-ui` components (app-header, etc.) can be done on a need-based basis.
  
 # Alternative approaches
 
