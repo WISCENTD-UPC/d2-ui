@@ -77,4 +77,5 @@ Another script, `scripts/copy-files.js` is run which copies a set of files from 
 # Alternative approaches
 
 - We could fork Material UI and pull in all changes upstream.
-- We could implement our own framework based on Material Design from Google
+- We could implement our own framework based on Material Design from Google.
+- We could use Material UI v1 and not wrap anything, only provide a DHIS2 theme and standalone components.
