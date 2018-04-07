@@ -70,15 +70,15 @@ if (global.document) {
 
 styles = {
     avatar: {
-        fontSize: '0.8rem',
-        fontWeight: '700',
+        fontSize: '1rem',
+        fontWeight: '500',
         lineHeight: '32px',
         marginLeft: '-2px',
         backgroundColor: '#6a94c2',
     },
 
     avatarBig: {
-        fontSize: '1.5rem',
+        fontSize: '2rem',
         fontWeight: '500',
         lineHeight: '60px',
         backgroundColor: '#6a94c2',

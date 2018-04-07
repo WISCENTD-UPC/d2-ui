@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
 import D2Lib from 'd2/lib/d2';
@@ -7,7 +7,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
-import SharingDialog from '../../packages/sharing/src/SharingDialog.component';
+import SharingDialog from '../../src/sharing/SharingDialog.component';
 
 injectTapEventPlugin();
 
@@ -48,7 +48,6 @@ class SharingExample extends React.Component {
                     id={this.state.id}
                     type={this.state.type}
                     onRequestClose={this.handleClose}
-                    d2={this.props.d2}
                 />
                 { this.props.examples.map(({ type, id }) => (
                     <div key={type + id} style={{ padding: 16 }}>
@@ -75,7 +74,7 @@ const element = document.getElementById('sharing');
 const dhisDevConfig = DHIS_CONFIG;
 const baseUrl = `${dhisDevConfig.baseUrl}/api`;
 
-ReactDOM.render(<div>Sharing dialog is loading.</div>, element);
+render(<div>Sharing dialog is loading.</div>, element);
 
 D2Lib.config.baseUrl = baseUrl;
 D2Lib.init({ baseUrl })
@@ -89,9 +88,9 @@ D2Lib.init({ baseUrl })
             { type: 'categoryOption', id: 'K4gwuiVvW3z' },
         ];
 
-        ReactDOM.render(<SharingExample examples={examples} d2={d2}/>, element);
+        render(<SharingExample examples={examples} />, element);
     })
     .catch((err) => {
         log.error('Failed to initialise D2:', err);
-        ReactDOM.render(<div>Failed to initialise D2: {err}</div>, element);
+        render(<div>Failed to initialise D2: {err}</div>, element);
     });

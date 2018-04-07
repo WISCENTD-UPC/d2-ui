@@ -44,14 +44,6 @@ class DataTable extends Component {
         });
     };
 
-    hasContextMenu = () => {
-        return Object.keys(this.props.contextMenuActions || {}).length > 1;
-    };
-
-    hasSingleAction = () => {
-        return Object.keys(this.props.contextMenuActions || {}).length === 1;
-    };
-
     renderRows() {
         return this.state.dataRows
             .map((dataRowsSource, dataRowsId) => (
@@ -62,8 +54,6 @@ class DataTable extends Component {
                     isActive={this.state.activeRow === dataRowsId}
                     itemClicked={this.handleRowClick}
                     primaryClick={this.props.primaryAction || (() => { })}
-                    contextMenuActions={this.props.contextMenuActions}
-                    contextMenuIcons={this.props.contextMenuIcons}
                 />
             ));
     }
@@ -100,16 +90,12 @@ class DataTable extends Component {
             <div className="data-table">
                 <div className="data-table__headers">
                     {this.renderHeaders()}
-                    { (this.hasContextMenu() || this.hasSingleAction()) &&
-                        <DataTableHeader />
-                    }
+                    <DataTableHeader />
                 </div>
                 <div className="data-table__rows">
                     {this.renderRows()}
                 </div>
-                { this.hasContextMenu() &&
-                    this.renderContextMenu()
-                }
+                {this.renderContextMenu()}
             </div>
         );
     }

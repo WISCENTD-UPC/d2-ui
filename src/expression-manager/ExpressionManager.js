@@ -70,14 +70,8 @@ const styles = {
     expressionContentWrap: {
         minHeight: 360,
     },
-    tabItemContainer: {
-        backgroundColor: 'rgb(33, 150, 243)',
-    },
-    tabs: {
-        color: 'white',
-    },
     divider: {
-        padding: '0 1rem 2rem',
+        padding: '0 1rem 1rem',
     },
 };
 
@@ -221,31 +215,32 @@ class ExpressionManager extends Component {
                         </Column>
                     </Paper>
                     <Paper style={styles.expressionValueOptionsWrap}>
-                        <Tabs style={styles.expressionContentWrap} tabItemContainerStyle={styles.tabItemContainer}>
-                            <Tab style={styles.tabs} label={this.i18n.getTranslation('data_elements')}>
+                        <Tabs style={styles.expressionContentWrap}>
+                            <Tab label={this.i18n.getTranslation('data_elements')}>
                                 <DataElementOperandSelector
                                     listStyle={styles.list}
                                     onSelect={this.dataElementOperandSelected}
                                 />
                             </Tab>
-                            <Tab style={styles.tabs} label={this.i18n.getTranslation('programs')}>
+                            <Tab label={this.i18n.getTranslation('programs')}>
                                 <ProgramOperandSelector
                                     onSelect={this.programOperandSelected}
                                 />
                             </Tab>
-                            <Tab style={styles.tabs} label={this.i18n.getTranslation('organisation_unit_counts')}>
+                            <Tab label={this.i18n.getTranslation('organisation_unit_counts')}>
                                 <OrganisationUnitGroupSelector
                                     listStyle={styles.list}
                                     onSelect={this.appendToFormula}
                                 />
                             </Tab>
-                            <Tab style={styles.tabs} label={this.i18n.getTranslation('constants')}>
+                            <Tab label={this.i18n.getTranslation('constants')}>
                                 <ConstantSelector
                                     listStyle={styles.list}
                                     onSelect={this.appendToFormula}
                                 />
                             </Tab>
-                            <Tab style={styles.tabs} label={this.i18n.getTranslation('reporting_rates')}>
+
+                            <Tab label={this.i18n.getTranslation('reporting_rates')}>
                                 <ReportingRatesSelector
                                     listStyle={styles.list}
                                     onSelect={this.appendToFormula}

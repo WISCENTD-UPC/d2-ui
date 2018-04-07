@@ -36,8 +36,6 @@ module.exports = {
             orgunittree: './examples/org-unit-tree',
             orgunitselect: './examples/org-unit-select',
             sharing: './examples/sharing',
-            favoritesdialog: './examples/favorites-dialog',
-            feedbacksnackbar: './examples/feedback-snackbar',
             sidebar: './examples/sidebar',
             iconpicker: './examples/icon-picker',
             formbuilder: './examples/form-builder',
@@ -56,8 +54,8 @@ module.exports = {
             tabs: './examples/tabs',
             chip: './examples/chip',
             controlbar: './examples/controlbar',
-            layout: './examples/layout',
-    },
+            chartoptions: './examples/chart-options',
+        },
     devtool: 'source-map',
     output: {
         library: 'Dhis2HeaderBar',
@@ -85,9 +83,7 @@ module.exports = {
     resolve: {
         alias: {
             react: __dirname + '/node_modules/react',
-            'react-dom': __dirname + '/node_modules/react-dom',
             'd2/lib/d2': __dirname + '/node_modules/d2/lib/d2',
-            'd2-ui-sharing': __dirname + '/packages/sharing/src/SharingDialog.component',
         },
     },
 

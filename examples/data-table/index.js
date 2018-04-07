@@ -52,49 +52,20 @@ function renderExamples(d2) {
         { firstName: 'Tom', lastName: 'Wakiki', lastUpdated: '2015-08-06T13:28:05.512' },
     ];
 
-    const multipleCma = {
-        edit(...args) {
-            console.log('Edit', ...args);
-        },
-        remove(...args) {
-            console.log('Remove', ...args);
-        },
-    };
-
-    const singleCma = {
+    const cma = {
         edit(...args) {
             console.log('Edit', ...args);
         },
     };
-
-    const emptyCma = {};
 
     const app = (
-        <div>
-            <Example>
-                <DataTable
-                    columns={['firstName', 'lastName', 'lastUpdated']}
-                    rows={myRows}
-                    contextMenuActions={multipleCma}
-                />
-            </Example>
-            <Example>
-                <DataTable
-                    columns={['firstName', 'lastName', 'lastUpdated']}
-                    rows={myRows}
-                    contextMenuActions={singleCma}
-                    contextMenuIcons={{ edit: 'edit' }}
-                />
-            </Example>
-            <Example>
-                <DataTable
-                    columns={['firstName', 'lastName', 'lastUpdated']}
-                    rows={myRows}
-                    contextMenuActions={emptyCma}
-                />
-            </Example>
-        </div>
-
+        <Example>
+            <DataTable
+                columns={['firstName', 'lastName', 'lastUpdated']}
+                rows={myRows}
+                contextMenuActions={cma}
+            />
+        </Example>
     );
     render(app, document.getElementById('data-table'));
 }

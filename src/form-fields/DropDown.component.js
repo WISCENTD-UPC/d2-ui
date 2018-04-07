@@ -11,8 +11,7 @@ function renderMenuItems({ menuItems, includeEmpty, emptyLabel }) {
     const renderedMenuItems = menuItems.map(({ id, displayName }) => renderMenuItem(id, displayName));
 
     if (includeEmpty) {
-        const emptyMenuItem = <MenuItem primaryText={emptyLabel} key="no_value" value={null} label=" " />;
-        renderedMenuItems.unshift(emptyMenuItem);
+        renderedMenuItems.unshift(renderMenuItem({ value: 'null', text: emptyLabel }));
     }
     return renderedMenuItems;
 }
@@ -20,6 +19,7 @@ function renderMenuItems({ menuItems, includeEmpty, emptyLabel }) {
 function createCallbackWithFakeEventFromMaterialSelectField(callback) {
     return (event, index, value) => callback({ target: { value } });
 }
+
 
 function DropDown({ fullWidth, onFocus, onBlur, onChange, value, disabled, menuItems, hintText, includeEmpty, emptyLabel, noOptionsLabel, ...other }) {
     const menuItemArray = Array.isArray(menuItems) ? menuItems : menuItems.toArray();

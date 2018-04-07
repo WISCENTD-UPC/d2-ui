@@ -8,17 +8,9 @@ import Popover from 'material-ui/Popover/Popover';
 
 describe('DataTable component', () => {
     let dataTableComponent;
-    const cma = {
-        edit(...args) {
-            console.log('Edit', ...args);
-        },
-        remove(...args) {
-            console.log('Remove', ...args);
-        },
-    };
 
     function renderComponent(props = {}) {
-        return shallow(<DataTable {...Object.assign({ contextMenuActions: cma }, props)} />);
+        return shallow(<DataTable {...Object.assign({ contextMenuActions: {} }, props)} />);
     }
 
     beforeEach(() => {

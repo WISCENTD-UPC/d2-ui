@@ -53,6 +53,8 @@ class PeriodPicker extends React.Component {
 
     getPeriod() {
         const date = this.state.year && this.state.week && getFirstDateOfWeek(this.state.year, this.state.week);
+        console.log("date is " + date);
+
         switch (this.props.periodType) {
         case 'Daily':
             return this.state.date && formattedDate(this.state.date);
@@ -109,11 +111,23 @@ class PeriodPicker extends React.Component {
     handleChange() {
         if (this.getPeriod()) {
             this.props.onPickPeriod(this.getPeriod());
+            // Reset detail fields
+            this.setState({
+                date: undefined,
+                week: undefined,
+                month: undefined,
+                biMonth: undefined,
+                quarter: undefined,
+                sixMonth: undefined,
+            });
         }
     }
 
     renderOptionPicker(name, options) {
-        const changeState = (e, i, value) => this.setState({ [name]: value }, this.handleChange);
+        const changeState = (e, i, value) => {
+            console.log("changing state variable : " + name + " to : "+ value);
+            this.setState({ [name]: value }, this.handleChange);
+        };
         const isInvalid = name === 'week' && this.state.invalidWeek;
 
         return (
@@ -125,7 +139,7 @@ class PeriodPicker extends React.Component {
                 floatingLabelStyle={isInvalid ? { color: 'red' } : {}}
             >
                 <MenuItem key="" value={this.state[name]} primaryText="&nbsp;" />
-                {Object.keys(options).sort().map((value) => (
+                {Object.keys(options).sort().map(value => (
                     <MenuItem
                         key={value}
                         value={value}
@@ -256,8 +270,8 @@ PeriodPicker.propTypes = {
         'SixMonthly',
         'SixMonthlyApril',
         'Yearly',
-        'FinancialApril',
         'FinancialJuly',
+        'FinancialApril',
         'FinancialOct',
     ]).isRequired,
 

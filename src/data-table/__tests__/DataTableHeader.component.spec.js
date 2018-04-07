@@ -4,18 +4,10 @@ import DataTableHeader from '../DataTableHeader.component';
 
 describe('DataTableHeader component', () => {
     let dataTableComponent;
-    const cma = {
-        edit(...args) {
-            console.log('Edit', ...args);
-        },
-        remove(...args) {
-            console.log('Remove', ...args);
-        },
-    };
 
     function renderComponent(props = {}) {
         return shallow(
-            <DataTableHeader {...Object.assign({ contextMenuActions: cma }, props)} />,
+            <DataTableHeader {...Object.assign({ contextMenuActions: {} }, props)} />,
             {
                 context: {
                     d2: {
