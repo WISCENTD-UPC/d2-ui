@@ -4,7 +4,9 @@
   "description": "d2-ui",
   "main": "./lib/cjs/index.js",
   "module": "./lib/es/index.js",
-  "files": [ "lib" ],
+  "files": [
+    "lib"
+  ],
   "license": "BSD-3-Clause",
   "author": "",
   "scripts": {
@@ -29,7 +31,7 @@
     "url": "https://github.com/dhis2/d2-ui.git"
   },
   "dependencies": {
-    "material-ui": "^0.20.0"
+    "material-ui": "^1.0.0-beta.41"
   },
   "peerDependencies": {
     "d2": "^29.1.1",

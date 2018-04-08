@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { DatePicker as MuiDatePicker } from 'material-ui';
+import { default as MuiDatePicker } from 'material-ui/TextField';
 
 class DatePicker extends React.Component {
     constructor(props) {

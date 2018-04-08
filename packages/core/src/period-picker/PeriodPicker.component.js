@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import DatePicker from 'material-ui/DatePicker';
 import { is53WeekISOYear, getFirstDateOfWeek } from 'd2/lib/period/helpers';
+
+import { MenuItem } from 'material-ui/Menu';
+import { SelectField } from 'd2-ui';
+import { TextField } from 'd2-ui';
 
 const styles = {
     datePicker: { width: '100%' },
@@ -16,6 +17,8 @@ const styles = {
     sixMonth: { width: 200 },
     line: { marginTop: 0 },
 };
+
+
 
 const getYear = date => (new Date(date)).getFullYear();
 const getTwoDigitMonth = (date) => {
@@ -53,6 +56,7 @@ class PeriodPicker extends React.Component {
 
     getPeriod() {
         const date = this.state.year && this.state.week && getFirstDateOfWeek(this.state.year, this.state.week);
+        console.log("getPeriod() date is " + date);
         switch (this.props.periodType) {
         case 'Daily':
             return this.state.date && formattedDate(this.state.date);
@@ -109,32 +113,33 @@ class PeriodPicker extends React.Component {
     handleChange() {
         if (this.getPeriod()) {
             this.props.onPickPeriod(this.getPeriod());
+            // Reset detail fields
+         /*   this.setState({
+                date: undefined,
+                week: undefined,
+                month: undefined,
+                biMonth: undefined,
+                quarter: undefined,
+                sixMonth: undefined,
+            });*/
         }
     }
 
     renderOptionPicker(name, options) {
-        const changeState = (e, i, value) => this.setState({ [name]: value }, this.handleChange);
+        const changeState = (event) => {
+            console.log("changing state variable : " + name + " to : "+ event.target.value);
+            this.setState({ [name]: event.target.value }, this.handleChange);
+        };
         const isInvalid = name === 'week' && this.state.invalidWeek;
-
         return (
             <SelectField
-                value={this.state[name]}
+                value={this.state[name] || ''}
                 onChange={changeState}
-                style={styles[name]}
-                floatingLabelText={this.getTranslation(name)}
-                floatingLabelStyle={isInvalid ? { color: 'red' } : {}}
+                style={isInvalid ? { color: 'red' } : styles[name]}
+                inputLabelText={name}
             >
-                <MenuItem key="" value={this.state[name]} primaryText="&nbsp;" />
-                {Object.keys(options).sort().map((value) => (
-                    <MenuItem
-                        key={value}
-                        value={value}
-                        primaryText={
-                            /[^0-9]/.test(options[value])
-                                ? this.getTranslation(options[value])
-                                : options[value]
-                        }
-                    />
+                {Object.keys(options).sort().map(value => (
+                    <MenuItem key={value} value={value} > {value} </MenuItem>
                 ))}
             </SelectField>
         );
@@ -189,20 +194,25 @@ class PeriodPicker extends React.Component {
     }
 
     render() {
-        const setDateState = (nothing, date) => {
-            const year = getYear(date);
-            const month = getTwoDigitMonth(date);
-            this.setState({ date, year, month }, this.handleChange);
+        const setDateState = (event) => {
+            const dateValues = event.target.value.split('-');
+
+            this.setState({
+                date: event.target.value,
+                year: dateValues[0],
+                month: dateValues[1],
+            }, this.handleChange);
         };
+
 
         switch (this.props.periodType) {
         case 'Daily':
             return (
-                <DatePicker
-                    floatingLabelText={this.getTranslation('day')}
+                <TextField
+                    label={this.getTranslation('day')}
+                    type="date"
+                    InputLabelProps={{ shrink: true }}
                     onChange={setDateState}
-                    autoOk
-                    container="inline"
                     style={styles.datePicker}
                 />
             );
