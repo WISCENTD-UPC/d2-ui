@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { default as MUICircularProgress } from 'material-ui/CircularProgress/CircularProgress';
+import { CircularProgress as MuiCircularProgess } from 'material-ui/Progress';
 
 function getSizes(large, small) {
-    // Size calculations for the MUI Circular Progress (https://github.com/callemall/material-ui/releases/tag/v0.16.0-rc1)
-    const defaultMaterialUISize = 59.5; // Represents the pre 0.16 values size value 1
-    const defaultMaterialUIMargin = 5.25; // Represents the pre 0.16 values size value 1
+    // Copy paste from MUI CircularProgress with v0,
+    // v1: https://github.com/mui-org/material-ui/blob/v1-beta/src/Progress/CircularProgress.js
+    const defaultMaterialUISize = 40; // Default prop size v1 = 40
+    const defaultMaterialUIMargin = 5.25; // Default margin v1 =
 
     if (large) {
         return {
@@ -31,8 +32,13 @@ export default function CircularProgress({ large, small, style }) {
     const sizes = getSizes(large, small);
 
     return (
+<<<<<<< HEAD
         <MUICircularProgress
             mode="indeterminate"
+=======
+        <MuiCircularProgress
+            variant="indeterminate"
+>>>>>>> Merge Temp components from component-with-v1
             size={sizes.size}
             style={Object.assign({ margin: sizes.margin }, style)}
         />

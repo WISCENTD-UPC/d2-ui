@@ -1,9 +1,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Tabs as MuiTabs, Tab as MuiTab } from 'material-ui/Tabs';
+import MuiTabs, { MuiTab } from 'material-ui/Tabs';
+import AppBar from 'material-ui/AppBar';
+import Typography from 'material-ui/Typography';
+
 import { createClassName } from '../component-helpers/utils';
 
+<<<<<<< HEAD
 export const Tabs = ({ style, selector, children }) => {
+=======
+const style = {
+    flexGrow: 1,
+};
+
+
+function TabContainer(props) {
+    return (
+        <Typography component={'div'} style={{ padding: 8 * 3 }}>
+            {props.children}
+        </Typography>
+    );
+}
+
+const Tabs = ({ style, selector, children }) => {
+>>>>>>> Merge Temp components from component-with-v1
     const className = createClassName('d2-ui-tabs', selector);
 
     return (
@@ -16,38 +36,31 @@ export const Tabs = ({ style, selector, children }) => {
     );
 };
 
-Tabs.propTypes = {
-    /**
-     * Override the inline-styles of the root element
-     */
-    style: PropTypes.object,
+class Tab extends Component {
+    state = { value: 0 };
 
-    /**
-     * If set, adds a class to the element in the format d2-ui-tabs-selector
-     */
-    selector: PropTypes.string,
-};
+    handleChange = (event, value) => {
+        this.setState({ value });
+    }
 
-export default Tabs;
-
-export class Tab extends Component {
-    static propTypes = {
-        /**
-         * If set, adds a class to the element in the format d2-ui-tab-selector
-         */
-        selector: PropTypes.string,
-    };
-
-    static muiName = 'Tab';
-
-    render() {
+    render = () => {
         const className = createClassName('d2-ui-tab', this.props.selector);
-
         return (
             <MuiTab
                 className={className}
-                {...this.props}
             />
         );
-    }
+    };
+}
+
+Tabs.propTypes = {
+    tabCount: PropTypes.number,
+    selector: PropTypes.string,
 };
+
+Tabs.defaultProps = {
+    tabCount: 0,
+};
+
+export default Tab;
+export { Tabs, Tab };
