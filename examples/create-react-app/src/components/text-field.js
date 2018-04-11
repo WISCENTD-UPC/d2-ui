@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-
-// import {InputField} from 'd2-ui';
-
- import { TextFieldTemp as InputField } from './TextFieldTemp';
+import { InputField } from 'd2-ui';
  
 const style = {
     margin: 16,
@@ -71,7 +68,7 @@ export default class InputFields extends Component {
                         type="text"
                         fullWidth
                         value={this.state.valueField4}
-                        onChange={(event) => this.onChangeValue("valueField4", event.target.value)}
+                        onChange={(event) => this.onChange("valueField4", event.target.value)}
                     />
                 </div>
             </MuiThemeProvider>

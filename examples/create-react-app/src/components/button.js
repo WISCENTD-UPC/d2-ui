@@ -2,11 +2,8 @@ import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
- import { Button } from 'd2-ui';
-// import { SvgIcon } from 'd2-ui';
-
-//import { ButtonTemp as Button } from './ButtonTemp';
-import { SvgIconTemp as SvgIcon } from './SvgIconTemp';
+import { Button } from 'd2-ui';
+import { SvgIcon } from 'd2-ui';
 
 const style = {
     margin: 16,

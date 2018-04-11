@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isString from 'lodash/fp/isString';
-import Select from 'material-ui/Select';
-import { InputLabel } from 'material-ui/Input';
-import { FormControl } from 'material-ui/Form';
-import { CircularProgress } from 'material-ui/Progress';
-import { createClassName } from '../component-helpers/utils';
+import Select from 'material-ui-next/Select';
+import { InputLabel } from 'material-ui-next/Input';
+import { FormControl } from 'material-ui-next/Form';
+import { CircularProgress } from 'material-ui-next/Progress';
+// import { createClassName } from '../component-helpers/utils';
 
 
 const d2DefaultStyle = {
@@ -17,6 +17,15 @@ const d2DefaultStyle = {
     },
 };
 
+const getLoadingIndicator = (loading) => {
+    let node;
+
+    if (loading === true) 
+        node = <CircularProgress size={30} />;
+    else if (isString(loading))
+        node = <div>{loading}</div>
+};
+
 const displayLoadingIndicator = (loading) => {
     let node;
     if (isString(loading)) node = <div>{loading}</div>;
@@ -25,10 +34,10 @@ const displayLoadingIndicator = (loading) => {
     return node;
 };
 
-const SelectField = (props) => {
-    const { children, error, inputLabelText, loading, selector, ...passThroughProps } = props;
+export const SelectTemp = (props) => {
+    const { children, error, inputLabelText, label, loading, value, items, selector, ...passThroughProps } = props;
 
-    const className = createClassName('d2-ui-selectfield', selector);
+   // const className = createClassName('d2-ui-selectfield', selector);
     return (
         <FormControl
             style={props.style || d2DefaultStyle.formControl}
@@ -36,9 +45,10 @@ const SelectField = (props) => {
         >
             <InputLabel>{inputLabelText}</InputLabel>
             <Select
+                value={value}
                 {...passThroughProps}
             >
-                { !loading || children
+                {getLoadingIndicator(loading) || children
                     ? children
                     : displayLoadingIndicator(loading) }
             </Select>
@@ -46,7 +56,7 @@ const SelectField = (props) => {
     );
 };
 
-SelectField.propTypes = {
+SelectTemp.propTypes = {
     autoWidth: PropTypes.bool,
     error: PropTypes.bool,
     children: PropTypes.node,
@@ -78,8 +88,8 @@ SelectField.propTypes = {
     ]),
 };
 
-SelectField.defaultProps = {
-
+SelectTemp.defaultProps = {
+    
 };
 
-export default SelectField;
+export default SelectTemp;

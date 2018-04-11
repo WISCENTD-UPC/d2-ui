@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import List, { ListItem, ListItemText } from 'material-ui/List';
+import List, { ListItem, ListItemText } from 'material-ui-next/List';
 
-import {TextField} from 'd2-ui';
-import {SvgIcon} from 'd2-ui';
+import InputField from '../text-field/TextField';
+import SvgIcon from '../svg-icon/SvgIcon';
 
 const d2DefaultStyle = {
     TextField: {
@@ -52,7 +52,7 @@ const styles = {
     },
 };
 
-class Sidebar extends Component {
+export class SidebarTemp extends Component {
     state = {
         currentSection: this.props.currentSection || (this.props.sections[0] && this.props.sections[0].key),
         searchText: '',
@@ -70,7 +70,6 @@ class Sidebar extends Component {
         }
     }
     onClear = () => {
-        console.log("clearing");
         this.setState({ searchText: '' }, () => {
             if (this.props.onChangeSearchText) {
                 this.props.onChangeSearchText(this.state.searchText);
@@ -81,7 +80,7 @@ class Sidebar extends Component {
     setSection = (key) => {
         // TODO: Refactor as this behavior is sort of silly. The current version of the SideBar with managed state should
         // probably be a HoC and a simpler version of the header bar should be available for more dynamic scenarios.
-
+        console.log(key);
         this.props.onSectionClick(key);
 
         if (key !== this.state.currentSection) {
@@ -113,7 +112,7 @@ class Sidebar extends Component {
         if (this.props.showSearchField) {
             return (
                 <div style={styles.container}>
-                    <TextField
+                    <InputField
                         placeholder={this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')}
                         style={d2DefaultStyle.TextField}
                         value={this.state.searchText}
@@ -130,8 +129,6 @@ class Sidebar extends Component {
     }
 
     renderSections = () => {
-        // console.log(this.props.sections);
-
         return (
             <List style={styles.list}>
                 {this.props.sections.map((section) => {
@@ -164,7 +161,7 @@ class Sidebar extends Component {
     )
 }
 
-Sidebar.propTypes = {
+SidebarTemp.propTypes = {
     sections: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.string,
         label: PropTypes.string,
@@ -186,12 +183,12 @@ Sidebar.propTypes = {
     }),
 };
 
-Sidebar.contextTypes = {
+SidebarTemp.contextTypes = {
     d2: PropTypes.object,
     muiTheme: PropTypes.object,
 };
 
-Sidebar.defaultProps = {
+SidebarTemp.defaultProps = {
     currentSection: 's1',
     showSearchField: false,
     searchText: null,
@@ -204,4 +201,4 @@ Sidebar.defaultProps = {
     onSectionClick: () => {},
 };
 
-export default Sidebar;
+// export default SidebarTemp;

@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from 'material-ui/Card/Card';
@@ -80,3 +80,4 @@ export default class IconPickerExample extends React.Component {
 IconPickerExample.childContextTypes = {
     d2: PropTypes.object,
 };
+*/

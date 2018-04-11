@@ -100,12 +100,12 @@ class App extends Component {
         <h2>SelectField</h2>
         <SelectField />
         
-      */}
         <h2>Sidebar</h2>
         <Sidebar />
+      */}
         <h2>SvgIcon</h2>
         <SvgIcon />
-
+        
         <h2>TextField</h2>
         <TextField />
         

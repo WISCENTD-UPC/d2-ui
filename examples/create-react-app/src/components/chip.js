@@ -2,9 +2,7 @@ import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-// import { Chip } from 'd2-ui';
-
-import { ChipTemp as Chip } from './ChipTemp';
+import { Chip } from 'd2-ui';
 
 const style = {
     margin: 16,

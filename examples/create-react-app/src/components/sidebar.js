@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-// import {Sidebar} from 'd2-ui';
-
-import { SidebarTemp as Sidebar } from './Sidebar.componentTemp';
-import { SvgIconTemp as SvgIcon } from './SvgIconTemp';
+import { Sidebar } from 'd2-ui';
+import { SvgIcon } from 'd2-ui';
 
 let currentSection;
 let lastSection;
+let currentSearchText;
 let sidebarRef;
 
 function changeSectionHandler(key, searchText) {
@@ -83,10 +82,10 @@ export default function SidebarExample(props) {
                         <Sidebar
                             sections={sections}
                             onChangeSection={changeSectionHandler}
-                            currentSection={props.currentSection}
+                            currentSection={currentSection}
                         />
                     </div>
-                    <div style={styles.page}>Current section: {props.currentSection}</div>
+                    <div style={styles.page}>Current section: {currentSection}</div>
                 </div>
                 <div style={styles.box}>
                     <div style={styles.header}>
@@ -96,7 +95,7 @@ export default function SidebarExample(props) {
                         <Sidebar
                             sections={sections.slice(0, 2)}
                             onChangeSection={changeSectionHandler}
-                            currentSection={props.currentSection}
+                            currentSection={currentSection}
                             showSearchField
                             searchFieldLabel="Search"
                             onChangeSearchText={changeSearchTextHandler}
@@ -104,8 +103,8 @@ export default function SidebarExample(props) {
                         />
                     </div>
                     <div style={styles.page}>
-                        Current section: {props.currentSection}<br />
-                        Current search: {props.searchText}
+                        Current section: {currentSection}<br />
+                        Current search: {currentSearchText}
                     </div>
                 </div>
 
@@ -118,11 +117,11 @@ export default function SidebarExample(props) {
                         <Sidebar
                             sections={sections.map(({ key, label }, i) => ({ key, label, icon: icons[i] }))}
                             onChangeSection={changeSectionHandler}
-                            currentSection={props.currentSection}
+                            currentSection={currentSection}
                         />
                     </div>
                     <div style={styles.page}>
-                        Current section: {props.currentSection}<br />
+                        Current section: {currentSection}<br />
                         Icons are simple strings, which are converted into Material icons &lt;FontIcon /> elements by the
                         Sidebar component.<br /><br />
                         This requires that the Material icons font is loaded by the app.
@@ -140,11 +139,11 @@ export default function SidebarExample(props) {
                                 icon: <SvgIcon icon={icons[i]} />,
                             }))}
                             onChangeSection={changeSectionHandler}
-                            currentSection={props.currentSection}
+                            currentSection={currentSection}
                         />
                     </div>
                     <div style={styles.page}>
-                        Current section: {props.currentSection}<br /><br />
+                        Current section: {currentSection}<br /><br />
                         Icons are passed to the Sidebar component as &lt;FontIcon /> elements.<br /><br />
                         This allows using custom icon fonts, or even SVG icons.
                     </div>
@@ -161,7 +160,7 @@ export default function SidebarExample(props) {
                                 containerElement: (<a href="path">path</a>),
                             }))}
                             onChangeSection={changeSectionHandler}
-                            currentSection={props.currentSection}
+                            currentSection={currentSection}
                         />
                     </div>
                 </div>
@@ -172,8 +171,9 @@ export default function SidebarExample(props) {
         </MuiThemeProvider>
     );
 }
-
+/*
 SidebarExample.propTypes = {
     currentSection: PropTypes.string,
     searchText: PropTypes.string,
 };
+*/

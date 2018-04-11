@@ -1,18 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MuiTextField from 'material-ui/TextField';
+import MuiTextField from 'material-ui-next/TextField';
 import { createClassName } from '../component-helpers/utils';
 
-// const d2DefaultStyle = {};
-
-const TextField = (props) => {
+const InputField = (props) => {
     const { selector, ...passThroughProps } = props;
-    const className = createClassName('d2-ui-textfieldtemp', selector);
+    const className = createClassName('d2-ui-textfield', selector);
 
     return (<MuiTextField {...passThroughProps} />);
 };
 
-TextField.propTypes = {
+InputField.propTypes = {
     /**
      * If set, helps users fill forms faster with specific auto-complete alternatives.
      */
@@ -40,7 +38,7 @@ TextField.propTypes = {
 
     /**
      * The id of the <input/> element, use to make the "label" and "helperText" properties
-     * accesible for screen readers.
+     * accesible for screen readers. 
      */
     id: PropTypes.string,
 
@@ -58,12 +56,6 @@ TextField.propTypes = {
      * If set, sets the label content.
      */
     label: PropTypes.node,
-
-    /**
-     * If set, sets the CSS class name for the label element.
-     */
-    labelClassName: PropTypes.string,
-
     /**
      * If "dense" or "normal", adjusts vertical spacing for this and contained components.
      */
@@ -81,10 +73,10 @@ TextField.propTypes = {
 
     /**
      * Callback fired when value is changed, requried property:
-     *
+     * 
      *      function(event: object) => void
-     *
-     * event: The event source of the callback.
+     * 
+     * event: The event source of the callback. 
      */
     onChange: PropTypes.func.isRequired,
 
@@ -138,7 +130,7 @@ TextField.propTypes = {
 
 };
 
-TextField.defaultProps = {
+InputField.defaultProps = {
     autoComplete: undefined,
     defaultValue: undefined,
     error: false,
@@ -148,7 +140,6 @@ TextField.defaultProps = {
     InputLabelProps: undefined,
     InputProps: undefined,
     label: undefined,
-    labelClassName: undefined,
     margin: undefined,
     multiline: false,
     name: undefined,
@@ -163,4 +154,4 @@ TextField.defaultProps = {
     value: undefined,
 };
 
-export default TextField;
+export default InputField;
