@@ -6,24 +6,7 @@ import Typography from 'material-ui/Typography';
 
 import { createClassName } from '../component-helpers/utils';
 
-<<<<<<< HEAD
 export const Tabs = ({ style, selector, children }) => {
-=======
-const style = {
-    flexGrow: 1,
-};
-
-
-function TabContainer(props) {
-    return (
-        <Typography component={'div'} style={{ padding: 8 * 3 }}>
-            {props.children}
-        </Typography>
-    );
-}
-
-const Tabs = ({ style, selector, children }) => {
->>>>>>> Merge Temp components from component-with-v1
     const className = createClassName('d2-ui-tabs', selector);
 
     return (

@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+<<<<<<< HEAD
 import List, { ListItem, ListItemText } from 'material-ui-next/List';
 
 import InputField from '../text-field/TextField';
 import SvgIcon from '../svg-icon/SvgIcon';
+=======
+import List, { ListItem, ListItemText } from 'material-ui/List';
+
+import {TextField} from 'd2-ui';
+import {SvgIcon} from 'd2-ui';
+>>>>>>> f458ee6a57d458f4d07f46c1e3f5b8d70411619f
 
 const d2DefaultStyle = {
     TextField: {
@@ -70,6 +77,10 @@ export class SidebarTemp extends Component {
         }
     }
     onClear = () => {
+<<<<<<< HEAD
+=======
+        console.log("clearing");
+>>>>>>> f458ee6a57d458f4d07f46c1e3f5b8d70411619f
         this.setState({ searchText: '' }, () => {
             if (this.props.onChangeSearchText) {
                 this.props.onChangeSearchText(this.state.searchText);
@@ -80,7 +91,11 @@ export class SidebarTemp extends Component {
     setSection = (key) => {
         // TODO: Refactor as this behavior is sort of silly. The current version of the SideBar with managed state should
         // probably be a HoC and a simpler version of the header bar should be available for more dynamic scenarios.
+<<<<<<< HEAD
         console.log(key);
+=======
+
+>>>>>>> f458ee6a57d458f4d07f46c1e3f5b8d70411619f
         this.props.onSectionClick(key);
 
         if (key !== this.state.currentSection) {
@@ -112,7 +127,11 @@ export class SidebarTemp extends Component {
         if (this.props.showSearchField) {
             return (
                 <div style={styles.container}>
+<<<<<<< HEAD
                     <InputField
+=======
+                    <TextField
+>>>>>>> f458ee6a57d458f4d07f46c1e3f5b8d70411619f
                         placeholder={this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')}
                         style={d2DefaultStyle.TextField}
                         value={this.state.searchText}
@@ -129,6 +148,11 @@ export class SidebarTemp extends Component {
     }
 
     renderSections = () => {
+<<<<<<< HEAD
+=======
+        // console.log(this.props.sections);
+
+>>>>>>> f458ee6a57d458f4d07f46c1e3f5b8d70411619f
         return (
             <List style={styles.list}>
                 {this.props.sections.map((section) => {
@@ -188,7 +212,11 @@ SidebarTemp.contextTypes = {
     muiTheme: PropTypes.object,
 };
 
+<<<<<<< HEAD
 SidebarTemp.defaultProps = {
+=======
+Sidebar.defaultProps = {
+>>>>>>> f458ee6a57d458f4d07f46c1e3f5b8d70411619f
     currentSection: 's1',
     showSearchField: false,
     searchText: null,

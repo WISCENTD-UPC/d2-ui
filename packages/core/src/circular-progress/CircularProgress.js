@@ -32,13 +32,8 @@ export default function CircularProgress({ large, small, style }) {
     const sizes = getSizes(large, small);
 
     return (
-<<<<<<< HEAD
-        <MUICircularProgress
-            mode="indeterminate"
-=======
         <MuiCircularProgress
             variant="indeterminate"
->>>>>>> Merge Temp components from component-with-v1
             size={sizes.size}
             style={Object.assign({ margin: sizes.margin }, style)}
         />
