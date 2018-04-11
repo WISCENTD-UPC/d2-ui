@@ -28,6 +28,7 @@ import HeaderBar from './components/header-bar'
 import FormEditor from './components/formula-editor'
 import IconPicker from './components/icon-picker'
 
+
 /** these examples need to be rewritten */
 //import OrgUnitSelect from './components/org-unit-select'
 //import OrgUnitTree from './components/org-unit-tree'
@@ -62,10 +63,7 @@ class App extends Component {
 
         <h2>Chips</h2>
         <Chips/>
-
-        <h2>Circular Progress</h2>
-        <CircularProgresses />
-
+      {/*
         <h2>Controlbars</h2>
         <Controlbars/>
 
@@ -98,35 +96,37 @@ class App extends Component {
 
         <h2>PeriodPicker</h2>
         <PeriodPicker d2={this.state.d2} />
-
+        
         <h2>SelectField</h2>
         <SelectField />
-
+        
+      */}
         <h2>Sidebar</h2>
         <Sidebar />
-
         <h2>SvgIcon</h2>
         <SvgIcon />
 
         <h2>TextField</h2>
         <TextField />
-
+        
+        {/*
         <h2>Tabs</h2>
         <Tabs />
-
+        
         <h2>Translation</h2>
         <Translation d2={this.state.d2} />
-
+        
         <h2>HeaderBar</h2>
         <HeaderBar d2={this.state.d2} />
         <p>Look at the top of the screen...</p>
-
+        
         <h2>IconPicker</h2>
         <IconPicker d2={this.state.d2} />
-
+        
         <h2>FormEditor</h2>
         <FormEditor />
-
+      */}
+  
       </div>
     );
   }

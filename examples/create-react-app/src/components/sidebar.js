@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontIcon from 'material-ui/FontIcon';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import {Sidebar} from 'd2-ui';
+// import {Sidebar} from 'd2-ui';
+
+import { SidebarTemp as Sidebar } from './Sidebar.componentTemp';
+import { SvgIconTemp as SvgIcon } from './SvgIconTemp';
 
 let currentSection;
 let lastSection;
@@ -67,7 +69,7 @@ const sections = [
     { key: 's4', label: 'Section 4' },
 ];
 
-const icons = ['fingerprint', 'alarm', '', 'face'];
+const icons = ['Fingerprint', 'Alarm', '', 'Face'];
 
 export default function SidebarExample(props) {
     return (
@@ -120,7 +122,7 @@ export default function SidebarExample(props) {
                         />
                     </div>
                     <div style={styles.page}>
-                        Current section: {props.currentSection}<br /><br />
+                        Current section: {props.currentSection}<br />
                         Icons are simple strings, which are converted into Material icons &lt;FontIcon /> elements by the
                         Sidebar component.<br /><br />
                         This requires that the Material icons font is loaded by the app.
@@ -135,7 +137,7 @@ export default function SidebarExample(props) {
                             sections={sections.map(({ key, label }, i) => ({
                                 key,
                                 label,
-                                icon: <FontIcon className="material-icons">{icons[i]}</FontIcon>,
+                                icon: <SvgIcon icon={icons[i]} />,
                             }))}
                             onChangeSection={changeSectionHandler}
                             currentSection={props.currentSection}
@@ -158,6 +160,7 @@ export default function SidebarExample(props) {
                                 label,
                                 containerElement: (<a href="path">path</a>),
                             }))}
+                            onChangeSection={changeSectionHandler}
                             currentSection={props.currentSection}
                         />
                     </div>

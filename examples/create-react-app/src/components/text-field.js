@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {InputField} from 'd2-ui';
 
+
+// import {InputField} from 'd2-ui';
+
+ import { TextFieldTemp as InputField } from './TextFieldTemp';
+ 
 const style = {
     margin: 16,
     display: 'flex',
@@ -22,18 +26,10 @@ export default class InputFields extends Component {
         valueField4: '',
     };
 
-    onChangeValue = (field, value) => {
+    onChange = (field, value) => {
         this.setState({ [field]: value });
     };
-
-    onChangeMultiHintText = (multiHintText) => {
-        this.setState({ multiHintText });
-    };
-
-    onChangeSingleHintText = (singleHintText) => {
-        this.setState({ singleHintText });
-    };
-
+    
     render() {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
@@ -41,25 +37,25 @@ export default class InputFields extends Component {
                     <InputField
                         label="Text"
                         value={this.state.valueField1}
-                        onChange={(value) => this.onChangeValue("valueField1", value)}
+                        onChange={(event) => this.onChange("valueField1", event.target.value)}
                     />
                     <InputField
                         label="Number"
                         type="number"
                         value={this.state.valueField2}
-                        onChange={(value) => this.onChangeValue("valueField2", value)}
+                        onChange={(event) => this.onChange("valueField2", event.target.value)}
                     />
                     <InputField
                         label="Default value"
                         type="number"
                         value={this.state.valueField3 || 100}
-                        onChange={(value) => this.onChangeValue("valueField3", value)}
+                        onChange={(event) => this.onChange("valueField3", event.target.value)}
                     />
                     <InputField
                         placeholder="Hint text"
                         type="text"
                         value={this.state.singleHintText}
-                        onChange={this.onChangeSingleHintText}
+                        onChange={(event) => this.onChange('singleHintText', event.target.value)}
                     />
                     <InputField
                         placeholder="Multiline field showing 2 rows and up to 4 rows"
@@ -68,14 +64,14 @@ export default class InputFields extends Component {
                         rows={2}
                         rowsMax={4}
                         value={this.state.multiHintText}
-                        onChange={this.onChangeMultiHintText}
+                        onChange={(event) => this.onChange('multiHintText', event.target.value)}
                     />
                     <InputField
                         placeholder="Full width"
                         type="text"
                         fullWidth
                         value={this.state.valueField4}
-                        onChange={(value) => this.onChangeValue("valueField4", value)}
+                        onChange={(event) => this.onChangeValue("valueField4", event.target.value)}
                     />
                 </div>
             </MuiThemeProvider>

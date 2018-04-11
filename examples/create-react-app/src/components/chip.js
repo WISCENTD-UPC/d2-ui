@@ -2,7 +2,9 @@ import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import { Chip } from 'd2-ui';
+// import { Chip } from 'd2-ui';
+
+import { ChipTemp as Chip } from './ChipTemp';
 
 const style = {
     margin: 16,
@@ -31,6 +33,7 @@ const floatStyle = {
 const floatLeftStyle = Object.assign({}, floatStyle, { float: 'left' });
 const floatRightStyle = Object.assign({}, floatStyle, { float: 'right', padding: '7px 32px' });
 
+
 const chipLabels = [
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
     'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -49,12 +52,14 @@ const chipLabels = [
     'Computer chips'
 ];
 
+
 export default function Chips() {
     return (
         <MuiThemeProvider muiTheme={getMuiTheme()}>
             <div style={style}>
                 <div style={floatLeftStyle}>Float left</div>
                 <div style={floatRightStyle}>Float right</div>
+           
                 <Chip label={'Default'}/>
                 <Chip label={'With avatar'} avatar={'star'}/>
                 <Chip label={'Primary'} color={'primary'}/>

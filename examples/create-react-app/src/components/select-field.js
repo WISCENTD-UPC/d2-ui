@@ -3,7 +3,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import MenuItem from 'material-ui/MenuItem';
 
-import {SelectField} from 'd2-ui';
+//import {SelectField} from 'd2-ui';
+import { SelectTemp as SelectField } from './SelectTemp';
 
 const items = [{
     id: 'cat',
@@ -34,6 +35,7 @@ export default function SelectFieldExample (props) {
                     label="Select animal"
                     items={items}
                 />
+                {/*
                 <SelectField
                     items={items}
                     value="cat"
@@ -82,6 +84,7 @@ export default function SelectFieldExample (props) {
                     errorText="Error text"
                     items={items}
                 />
+                */}
             </div>
         </MuiThemeProvider>
     );
