@@ -6,7 +6,7 @@ import Typography from 'material-ui/Typography';
 
 import { createClassName } from '../component-helpers/utils';
 
-export const Tabs = ({ style, selector, children }) => {
+const Tabs = ({ style, selector, children }) => {
     const className = createClassName('d2-ui-tabs', selector);
 
     return (

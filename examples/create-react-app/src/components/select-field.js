@@ -33,21 +33,21 @@ export default function SelectFieldExample (props) {
                     label="Select animal"
                     items={items}
                 />
-                {/*
                 <SelectField
                     items={items}
                     value="cat"
-                />
+                    />
                 <SelectField
                     label="Select animal"
                     items={items}
-                />
+                    />
                 <SelectField
                     label="Select multiple"
                     items={items}
                     value={['cat', 'dog']}
                     multiple
-                />
+                    />
+                {/*
                 <SelectField
                     label="Select animal"
                     value="dog"

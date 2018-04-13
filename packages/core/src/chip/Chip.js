@@ -2,12 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MuiChip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
-<<<<<<< HEAD
 
 import SvgIcon from '../svg-icon/SvgIcon';
-=======
-import {SvgIcon} from 'd2-ui';
->>>>>>> f458ee6a57d458f4d07f46c1e3f5b8d70411619f
 import { createClassName } from '../component-helpers/utils';
 
 const chipSize = '30px';
@@ -19,11 +15,8 @@ const chipStyle = {
     pointer: 'auto',
 };
 
-<<<<<<< HEAD
 /** "labelStyle" prop removed from v1
  * 
-=======
->>>>>>> f458ee6a57d458f4d07f46c1e3f5b8d70411619f
 const labelStyle = {
     fontSize: '13px',
     fontWeight: 500,
@@ -35,17 +28,9 @@ const clickableStyle = { cursor: 'pointer' };
 const disabledStyle = { cursor: 'auto', opacity: 0.5 };
 const avatarIcons = { star: <SvgIcon icon={'Star'} /> };
 
-<<<<<<< HEAD
 /** "colors" prop removed from v1
  * 
 const colors = {
-=======
-export const clickableStyle = { cursor: 'pointer' };
-export const disabledStyle = { cursor: 'auto', opacity: 0.5 };
-export const avatarIcons = { star: <SvgIcon icon={'star'} /> };
-
-export const colors = {
->>>>>>> f458ee6a57d458f4d07f46c1e3f5b8d70411619f
     default: {
         color: chipColor,
         backgroundColor: '#e0e0e0',
@@ -55,7 +40,6 @@ export const colors = {
         backgroundColor: '#b1deda',
     },
 };
-<<<<<<< HEAD
 */
 const avatarProps = {
     colorDefault: chipColor,                    
@@ -83,40 +67,15 @@ const Chip = ({ avatar, color = 'default', disabled, label, onClick, onRequestDe
         
     };
 
-=======
-
-export const avatarProps = {
-    color: chipColor,
-    backgroundColor: 'rgba(0,0,0,0.08)',
-    style: { height: chipSize, width: chipSize },
-};
-
-const Chip = (props) => {
-    const { color, disabled, selector, ...passThroughProps } = props;
-    const className = createClassName('d2-ui-chip', selector);
-    const style = {
-        ...chipStyle, // d2 chipstyle
-        ...(typeof onClick === 'function' ? clickableStyle : {}), // og ikkeno clickablestyle hvis det er funksjon (?)
-        ...(disabled ? disabledStyle : {}), // og ikkeno disabled style, hvis den er disabled (?)
-    };
-
-    const wrapperClassName = createClassName('d2-ui-chip-wrapper', selector);
-    const wrapperStyle = { display: 'inline-block', verticalAlign: 'top' };
->>>>>>> f458ee6a57d458f4d07f46c1e3f5b8d70411619f
 
     return (
         
         <div className={wrapperClassName} style={wrapperStyle}>
-<<<<<<< HEAD
             <MuiChip {...props} style={style} />
-=======
-            <MuiChip {...passThroughProps} style={style} />
->>>>>>> f458ee6a57d458f4d07f46c1e3f5b8d70411619f
         </div>
     );
 };
 
-export default Chip;
 
 Chip.propTypes = {
     color: PropTypes.string,
@@ -128,8 +87,6 @@ Chip.defaultProps = {
     color: 'default',
     disabled: false,
     selector: undefined,
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> f458ee6a57d458f4d07f46c1e3f5b8d70411619f
+
+export default Chip;
