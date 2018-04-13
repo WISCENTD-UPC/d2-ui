@@ -1,10 +1,8 @@
 import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import MenuItem from 'material-ui/MenuItem';
 
-//import {SelectField} from 'd2-ui';
-import { SelectTemp as SelectField } from './SelectTemp';
+import { SelectField } from 'd2-ui';
 
 const items = [{
     id: 'cat',

@@ -18,7 +18,7 @@ import Layout from './components/layout'
 import Legend from './components/legend'
 import PeriodPicker from './components/period-picker'
 import SelectField from './components/select-field'
-import Sidebar from './components/sidebar'
+import SidebarExample from './components/sidebar'
 import SvgIcon from './components/svg-icon'
 import TextField from './components/text-field'
 import Tabs from './components/tabs'
@@ -38,8 +38,10 @@ class App extends Component {
     super(props)
 
     this.state = {
-        d2: props.d2
-    }
+        d2: props.d2,
+        sidebarSection: '',
+        sidebarSearchText: '',
+    };
   }
 
   getChildContext() {
@@ -99,10 +101,11 @@ class App extends Component {
         
         <h2>SelectField</h2>
         <SelectField />
+      */}
         
         <h2>Sidebar</h2>
-        <Sidebar />
-      */}
+        <SidebarExample />
+        
         <h2>SvgIcon</h2>
         <SvgIcon />
         
