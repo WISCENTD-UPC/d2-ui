@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isString from 'lodash/fp/isString';
-import Select from 'material-ui-next/Select';
-import { InputLabel } from 'material-ui-next/Input';
-import { FormControl } from 'material-ui-next/Form';
-import { CircularProgress } from 'material-ui-next/Progress';
+import MuiSelect from 'material-ui/Select';
+import { MuiMenuItem } from 'material-ui/Menu';
+import { InputLabel } from 'material-ui/Input';
+import { FormControl } from 'material-ui/Form';
+import { MuiCircularProgress } from 'material-ui/Progress';
 import { createClassName } from '../component-helpers/utils';
 
 
@@ -17,46 +18,77 @@ const d2DefaultStyle = {
     },
 };
 
-const displayLoadingIndicator = (loading) => {
+const getLoadingIndicator = (loading) => {
     let node;
 
     if (loading === true) 
-        node = <CircularProgress size={30} />;
+        node = <MuiCircularProgress size={30} />;
     else if (isString(loading))
         node = <div>{loading}</div>
 };
 
-const displayLoadingIndicator = (loading) => {
-    let node;
-    if (isString(loading)) node = <div>{loading}</div>;
-    else node = <CircularProgress size={30} style={d2DefaultStyle.loadingIndicator} />;
+const getLoadingStyle = (loading) => {
+    let listStyle;
 
-    return node;
+    if (loading == true)
+        listStyle = { 
+            teaxtAlign: center 
+    };
+    else if (isString(loading))
+        listStyle = {
+            paddingLeft: 24,
+            lineHeight: '32px',
+            fontStyle: 'italic',
+        };
+
+    return listStyle;
 };
 
-export const SelectTemp = (props) => {
-    const { children, error, inputLabelText, label, loading, value, items, selector, ...passThroughProps } = props;
-    const className = createClassName('d2-ui-selectfield', selector);
+const getMenuItems = (items, isLoading, isMultiple, value) => {
+    if (isLoading || !Array.isArray(items))
+        return null;
     
-    return (
+    console.log(
+        items.map(item => {
+
+    })
+    );
+    return items.map(item => {
+        <MuiMenuItem
+            key={item.id}
+            value={item.id}
+            primaryText={item.name}
+            insetChildren={isMultiple}
+            checked={isMultiple && Array.isArray(value) && value.indexOf(item.id) > -1}
+        /> 
+    })
+};
+
+export const SelectField = (props) => {
+    const { children, error, inputLabelText, label, loading, multiple, value, items, selector, ...selectProps } = props;
+    const className = createClassName('d2-ui-selectfield', selector);
+/*    
         <FormControl
             style={props.style || d2DefaultStyle.formControl}
             error={error}
         >
             <InputLabel>{inputLabelText}</InputLabel>
-            <Select
-                value={value}
-                {...passThroughProps}
+            */
+        console.log(value);
+        console.log(selectProps);
+    return (
+            <MuiSelect
+                value={props.native === false ? value : ''}
+                {...selectProps}
             >
-                {getLoadingIndicator(loading) || children
-                    ? children
-                    : displayLoadingIndicator(loading) }
-            </Select>
-        </FormControl>
+                {getLoadingIndicator(loading)}
+                {getMenuItems(items, loading, multiple, value)}
+                {!loading && children ? children : null}
+            </MuiSelect>
     );
 };
 
-SelectTemp.propTypes = {
+SelectField.propTypes = {
     autoWidth: PropTypes.bool,
     error: PropTypes.bool,
     children: PropTypes.node,
@@ -88,4 +120,4 @@ SelectTemp.propTypes = {
     ]),
 };
 
-export default SelectTemp;
+export default SelectField;

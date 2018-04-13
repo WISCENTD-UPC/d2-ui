@@ -99,13 +99,13 @@ class App extends Component {
         <h2>PeriodPicker</h2>
         <PeriodPicker d2={this.state.d2} />
         
+      */}
         <h2>SelectField</h2>
         <SelectField />
-      */}
         
         <h2>Sidebar</h2>
         <SidebarExample />
-        
+
         <h2>SvgIcon</h2>
         <SvgIcon />
         
